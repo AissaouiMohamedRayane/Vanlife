@@ -1,0 +1,205 @@
+/*Reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+html {
+  font-family: sans-serif;
+}
+
+
+/*End reset*/
+
+/*Utility classes*/
+
+
+.mr-b-5 {
+  margin-bottom: 5px;
+}
+
+.mr-b-20 {
+  margin-bottom: 20px;
+}
+
+.mr-b-30 {
+  margin-bottom: 30px;
+}
+
+.pd-l-2 {
+  padding-left: 2rem;
+}
+
+.nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px
+}
+
+.center {
+  align-items: center;
+}
+
+.nogap {
+  gap: 0;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-40 {
+  gap: 40px;
+}
+
+.underline {
+  font-size: 1.6rem;
+  font-weight: 545;
+  color: black;
+  text-decoration: underline;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px
+}
+
+.flex-spacebetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*End utility classes*/
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  height: 100vh;
+}
+
+.nav {
+  height: 100px;
+  padding: 2.5rem 2rem;
+  background-color: #FFF7ED;
+}
+
+.logo {
+  font-size: 2.2rem;
+  font-weight: 800;
+}
+
+.logo:any-link {
+  color: black;
+  text-decoration: none;
+}
+
+.nav_link {
+  font-size: 1.6rem;
+  font-weight: 545;
+  color: #4D4D4D;
+}
+
+.nav_link:any-link {
+  text-decoration: none;
+}
+
+.nav_link:hover {
+  filter: brightness(170%);
+}
+
+.nav_list {
+  width: 150px;
+}
+
+.image_container {
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image_container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #00000046;
+
+}
+
+.back_image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+.image_caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 30px;
+}
+
+.image_h1 {
+  font-size: 5rem;
+  color: white;
+}
+
+.image_text {
+  font-size: 2rem;
+  color: white;
+}
+
+.orange_button {
+  margin-top: 20px;
+  background-color: #FF8C38;
+  color: white;
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.footer {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525;
+}
+
+.footer_text {
+  color: #AAAAAA;
+  font-size: 1.5;
+  font-weight: 300;
+}
