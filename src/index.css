@@ -111,6 +111,10 @@ html {
   gap: 60px;
 }
 
+.light-orange-background {
+  background-color: #FFEAD0;
+}
+
 .orange-background {
   background-color: #FF8C38;
 }
@@ -125,6 +129,10 @@ html {
 
 .black-background {
   background-color: #161616;
+}
+
+.greay-color {
+  color: #4D4D4D;
 }
 
 .white-color {
@@ -317,22 +325,35 @@ body::-webkit-scrollbar {
 }
 
 .vans-list-element {
-  background-color: #FFEAD0;
-  color: #4D4D4D;
   padding: 1rem 4rem;
   border-radius: 7px;
   font-size: 1.5rem;
+  transition: transform .1s ;
+  cursor: pointer;
+}
+
+.vans-list-element:hover {
+  transform: scale(1.1);
 }
 
 .clear-filter {
   color: #4D4D4D;
   font-size: 1.5rem;
   text-decoration: underline;
+  cursor: pointer;
+}
 
+.clear-filter:hover {
+  filter: brightness(1.2);
 }
 
 .van-card {
   max-width: 500px;
+  transition: transform .1s ease-in-out;
+}
+
+.van-card:hover {
+  transform: scale(1.01);
 }
 
 .van-card img {
@@ -384,7 +405,7 @@ body::-webkit-scrollbar {
   font-size: 1.5rem;
 }
 
-.van-detail-img-container{
+.van-detail-img-container {
   margin: 3rem 0;
 }
 
