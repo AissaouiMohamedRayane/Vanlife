@@ -59,6 +59,7 @@ export default function VansBody() {
       return updatedState;
     });
   }
+  console.log("for commit");
 
   return (
     <main className="vans-main">
