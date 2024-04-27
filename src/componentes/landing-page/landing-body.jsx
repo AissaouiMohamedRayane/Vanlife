@@ -18,7 +18,7 @@ export default function Body() {
             color="white-color"
             background="orange-background"
             text="Find your van"
-            buttonClasses="mr-t-20"
+            buttonClasses="mr-t-20 hover"
           />
         </Link>
       </figcaption>

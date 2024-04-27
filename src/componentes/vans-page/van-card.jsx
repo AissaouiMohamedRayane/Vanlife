@@ -29,7 +29,7 @@ export default function VanCard(props) {
             text={props.type}
             color="white-color"
             background={background}
-            buttonClasses="van-card-button"
+            buttonClasses="van-card-button hover"
           />
         </figcaption>
       </figure>
