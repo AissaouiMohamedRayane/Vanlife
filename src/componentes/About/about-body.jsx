@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import image from "../../assets/image2.png";
 import Button from "../button";
 export default function Body() {
@@ -27,12 +28,14 @@ export default function Body() {
             <br />
             <span className="nowrap">Your van is ready.</span>
           </h2>
-          <Button
-            text="Explore our vans"
-            background="black-background"
-            color="white-color"
-            buttonClasses="about-card-button"
-          />
+          <Link to='/vans'>
+            <Button
+              text="Explore our vans"
+              background="black-background"
+              color="white-color"
+              buttonClasses="about-card-button hover scale"
+            />
+          </Link>
         </div>
       </main>
     </div>

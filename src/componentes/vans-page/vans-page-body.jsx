@@ -62,9 +62,9 @@ export default function VansBody() {
   return (
     <main className="vans-main">
       <h1 className="vans-h1">Explore our van options</h1>
-      <ul className="flex vans-list">
+      <ul className="flex vans-list flex-wrap">
         <li
-          className={`vans-list-element ${
+          className={`vans-list-element scale hover ${
             type.simple
               ? "dark-orange-background white-color"
               : "light-orange-background greay-color"
@@ -74,7 +74,7 @@ export default function VansBody() {
           Simple
         </li>
         <li
-          className={`vans-list-element ${
+          className={`vans-list-element scale hover ${
             type.luxury
               ? "black-background white-color"
               : "light-orange-background greay-color"
@@ -84,7 +84,7 @@ export default function VansBody() {
           luxury
         </li>
         <li
-          className={`vans-list-element ${
+          className={`vans-list-element scale hover ${
             type.rugged
               ? "green-background white-color"
               : "light-orange-background greay-color"
@@ -93,7 +93,7 @@ export default function VansBody() {
         >
           Rugged
         </li>
-        <span className="mr-l-40 clear-filter" onClick={clearFilter}>
+        <span className="mr-l-40 clear-filter hover" onClick={clearFilter}>
           Clear filter
         </span>
       </ul>

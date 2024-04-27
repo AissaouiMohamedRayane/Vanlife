@@ -44,6 +44,10 @@ html {
   padding-left: 2rem;
 }
 
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
 .nowrap {
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -162,6 +166,13 @@ html {
   cursor: pointer;
 }
 
+.scale {
+  transition: transform .1s ease-in-out;
+}
+
+.scale:hover {
+  transform: scale(1.1);
+}
 
 /*End utility classes*/
 body::-webkit-scrollbar {
@@ -328,19 +339,12 @@ body::-webkit-scrollbar {
   padding: 1rem 4rem;
   border-radius: 7px;
   font-size: 1.5rem;
-  transition: transform .1s ;
-  cursor: pointer;
-}
-
-.vans-list-element:hover {
-  transform: scale(1.1);
 }
 
 .clear-filter {
   color: #4D4D4D;
   font-size: 1.5rem;
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .clear-filter:hover {
@@ -385,7 +389,7 @@ body::-webkit-scrollbar {
 .vans-grid {
   margin: 4rem 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
   gap: 40px;
   justify-items: center;
 }
