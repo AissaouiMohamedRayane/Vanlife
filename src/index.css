@@ -28,6 +28,14 @@ html {
   margin-bottom: 30px;
 }
 
+.mr-l-40 {
+  margin-left: 40px;
+}
+
+.mr-t-20 {
+  margin-top: 20px;
+}
+
 .pd-l-2 {
   padding-left: 2rem;
 }
@@ -53,29 +61,6 @@ html {
   align-items: center;
 }
 
-.nogap {
-  gap: 0;
-}
-
-.gap-5 {
-  gap: 5px;
-}
-
-.gap-20 {
-  gap: 20px;
-}
-
-.gap-40 {
-  gap: 40px;
-}
-
-.underline {
-  font-size: 1.6rem;
-  font-weight: 545;
-  color: black;
-  text-decoration: underline;
-}
-
 .flex-center {
   display: flex;
   align-items: center;
@@ -89,6 +74,59 @@ html {
   justify-content: space-between;
 }
 
+.nogap {
+
+  gap: 0;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.gap-40 {
+  gap: 40px;
+}
+
+.gap-50 {
+  gap: 50px;
+}
+
+.gap-60 {
+  gap: 60px;
+}
+
+.orange-background {
+  background-color: #FF8C38;
+}
+
+.green-background {
+  background-color: #115E59;
+}
+
+.black-background {
+  background-color: #161616;
+}
+
+.white-color {
+  color: white;
+}
+
+.underline {
+  font-size: 1.6rem;
+  font-weight: 545;
+  color: black;
+  text-decoration: underline;
+}
+
+
 /*End utility classes*/
 body::-webkit-scrollbar {
   display: none;
@@ -97,13 +135,13 @@ body::-webkit-scrollbar {
 #root {
   display: flex;
   flex-flow: column nowrap;
-  height: 100vh;
+  background-color: #FFF7ED;
+  min-height: 100vh;
 }
 
 .nav {
   height: 100px;
   padding: 2.5rem 2rem;
-  background-color: #FFF7ED;
 }
 
 .logo {
@@ -178,10 +216,7 @@ body::-webkit-scrollbar {
   color: white;
 }
 
-.orange_button {
-  margin-top: 20px;
-  background-color: #FF8C38;
-  color: white;
+.button {
   width: 100%;
   padding: 1rem 2rem;
   border: none;
@@ -191,7 +226,7 @@ body::-webkit-scrollbar {
 }
 
 .footer {
-  height: 100px;
+  min-height: 100px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -202,4 +237,104 @@ body::-webkit-scrollbar {
   color: #AAAAAA;
   font-size: 1.5;
   font-weight: 300;
+}
+
+.about-main {
+  margin: 5rem 2rem;
+}
+
+.about-hero-image img {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+}
+
+.about-h1 {
+  font-size: 3.5rem;
+}
+
+.about-card {
+  background-color: #FFCC8D;
+  border-radius: 14px;
+  padding: 3rem;
+}
+
+.about-h2 {
+  width: 50%;
+  font-size: 3rem;
+}
+
+.about-text {
+  display: block;
+  font-size: 2rem;
+}
+
+.about-card-button {
+  width: 25%;
+  margin-top: 3rem;
+}
+
+.vans-main {
+  margin: 5rem 2rem;
+}
+
+.vans-h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.vans-list {
+  list-style: none;
+  gap: 50px;
+}
+
+.vans-list-element {
+  background-color: #FFEAD0;
+  color: #4D4D4D;
+  padding: 1rem 4rem;
+  border-radius: 7px;
+  font-size: 1.5rem;
+}
+
+.clear-filter {
+  color: #4D4D4D;
+  font-size: 1.5rem;
+  text-decoration: underline;
+
+}
+
+.van-card {
+  max-width: 500px;
+}
+
+.van-card img {
+
+  width: 100%;
+}
+
+.van-card-button {
+  width: 40%;
+}
+
+.price-container {
+  position: relative;
+}
+
+.price {
+  font-size: 2rem;
+}
+
+.price-time {
+  position: absolute;
+  font-size: 1.4rem;
+  font-weight: 100;
+  top: 100;
+  right: 0;
+}
+
+.vans-grid {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
+  gap: 40px;
 }

@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
   const [linkStates, setLinkStates] = useState({
     about: props.link === "about",
-    vans: false,
+    vans: props.link === "vans",
   });
 
   function handleLinkToggle(link) {
@@ -19,7 +19,7 @@ export default function Navbar(props) {
   return (
     <nav className="flex-spacebetween nav">
       <Link className="logo" to="/" onClick={() => handleLinkToggle("home")}>
-        #VANLIFE
+        #VANLIF
       </Link>
       <div className="flex-spacebetween nav_list">
         <Link
@@ -30,9 +30,9 @@ export default function Navbar(props) {
           About
         </Link>
         <Link
-          className="nav_link"
-          to="/"
-          onClick={() => handleLinkToggle("home")}
+          className={linkStates.vans ? " underline" : "nav_link"}
+          to="/vans"
+          onClick={() => handleLinkToggle("vans")}
         >
           Vans
         </Link>
