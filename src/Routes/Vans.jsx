@@ -1,6 +1,6 @@
 import Navbar from "../componentes/NavBar";
 import VansBody from "../componentes/vans-page/vans-page-body";
-import Footer from "../componentes/landing-page/footer";
+import Footer from "../componentes/footer";
 export default function Vans() {
   return (
     <div className="vasn">

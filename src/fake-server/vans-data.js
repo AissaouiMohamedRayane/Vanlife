@@ -69,7 +69,7 @@ createServer({
   },
 
   routes() {
-    this.namespace = "api";
+    this.urlPrefix = 'https://';
 
     this.get("/vans", (schema, request) => {
       return schema.vans.all();

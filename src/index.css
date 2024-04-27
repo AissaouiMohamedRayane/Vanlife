@@ -36,6 +36,10 @@ html {
   margin-top: 20px;
 }
 
+.mr-r-20 {
+  margin-right: 20px;
+}
+
 .pd-l-2 {
   padding-left: 2rem;
 }
@@ -49,6 +53,10 @@ html {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.item-start {
+  align-items: start;
 }
 
 .flex-column {
@@ -107,6 +115,10 @@ html {
   background-color: #FF8C38;
 }
 
+.dark-orange-background {
+  background-color: #E17654;
+}
+
 .green-background {
   background-color: #115E59;
 }
@@ -119,11 +131,27 @@ html {
   color: white;
 }
 
+.black-color {
+  color: #161616;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
 .underline {
   font-size: 1.6rem;
   font-weight: 545;
   color: black;
   text-decoration: underline;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.hover {
+  cursor: pointer;
 }
 
 
@@ -226,7 +254,7 @@ body::-webkit-scrollbar {
 }
 
 .footer {
-  min-height: 100px;
+  min-height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -308,8 +336,9 @@ body::-webkit-scrollbar {
 }
 
 .van-card img {
-
   width: 100%;
+  max-height: 450px;
+  border-radius: 10px;
 }
 
 .van-card-button {
@@ -337,4 +366,52 @@ body::-webkit-scrollbar {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(25rem, 1fr));
   gap: 40px;
+  justify-items: center;
+}
+
+.van-detail {
+  margin: 1rem 2rem 2rem;
+}
+
+.arrow {
+  margin-top: 5px;
+  width: 22px;
+  height: auto;
+}
+
+.van-detail-link:any-link {
+  color: #201F1D;
+  font-size: 1.5rem;
+}
+
+.van-detail-img-container{
+  margin: 3rem 0;
+}
+
+.van-detail-img-container img {
+  width: clamp(300px, 40%, 800px);
+  height: auto;
+}
+
+.van-detail-button {
+  width: clamp(100px, 40%, 500px);
+}
+
+.van-detail-h1 {
+  text-align: end;
+  font-size: 2.5rem;
+}
+
+.van-detail-h2 {
+  font-weight: 100;
+}
+
+.bold {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.van-detail-descreption {
+  font-size: 1.8rem;
+  font-weight: 500;
 }

@@ -1,6 +1,6 @@
 import Navbar from "../componentes/NavBar";
 import Body from "../componentes/About/about-body";
-import Footer from "../componentes/landing-page/footer";
+import Footer from "../componentes/footer";
 export default function () {
   return (
     <>

@@ -1,11 +1,10 @@
 import VanCard from "./van-card";
-import image from "../../assets/image.svg";
 import "../../fake-server/vans-data";
 import { useState, useEffect } from "react";
 export default function VansBody() {
   const [vans, setVans] = useState([]);
   useEffect(() => {
-    fetch("api/vans")
+    fetch("https://vans")
       .then((res) => res.json())
       .then((data) => setVans(data.vans));
   }, []);
@@ -15,6 +14,7 @@ export default function VansBody() {
     return (
       <VanCard
         key={van.id}
+        id={van.id}
         img={van.imageUrl}
         vanName={van.name}
         price={van.price}
