@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Button from "../utility-componentes/button";
 import Navbar from "../utility-componentes/NavBar";
 import "../../fake-server/vans-data";
@@ -10,6 +10,39 @@ export default function VanDetail() {
   const vanId = parm.id;
   const [van, setVan] = useState(1);
   const [background, setBackground] = useState({});
+  const [imageHeight, setImageHeight] = useState("0px");
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const imageRef = useRef(1);
+
+  useEffect(() => {
+    const updateImageHeight = () => {
+      const height = imageRef.current.clientHeight;
+      setImageHeight(`${height}px`);
+      if (imageRef.current) {
+        const height = imageRef.current.clientHeight;
+        setImageHeight(`${height}px`);
+        console.log(imageHeight);
+      }
+    };
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    updateImageHeight();
+
+    window.addEventListener("resize", () => {
+      updateImageHeight();
+      handleResize();
+    });
+
+    return () => {
+      window.removeEventListener("resize", updateImageHeight);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     fetch(`https://vans/${vanId}`)
       .then((res) => res.json())
@@ -28,7 +61,7 @@ export default function VanDetail() {
   return (
     <>
       {van !== 1 ? (
-        <div className="van-detail grow">
+        <div className="van-detail grow layout-margin">
           <div className="flex van-detail-link-container">
             <Link to="/vans" className="van-detail-link">
               <span className="mr-r-20">
@@ -37,24 +70,58 @@ export default function VanDetail() {
               Back to all vans
             </Link>
           </div>
-          <figure className="van-detail-img-container flex item-start">
-            <img src={van.imageUrl} alt="image" />
-            <figcaption className="van-detail-caption flex-column gap-40">
+          <figure
+            className={`van-detail-img-container ${
+              windowWidth >= 670 ? "flex" : "flex-column"
+            } item-start gap-50`}
+          >
+            <img src={van.imageUrl} ref={imageRef} alt="image" />
+            <figcaption
+              className={`van-detail-caption flex-column ${
+                windowWidth >= 1310 ? "gap-40" : "gap-20"
+              }`}
+              style={{
+                height: imageHeight,
+              }}
+            >
               <div className="flex-column gap-30">
-                <div className="flex-spacebetween ">
+                <div
+                  className={`flex-spacebetween gap-30 ${
+                    windowWidth >= 670 ? "" : "flex-wrap"
+                  }`}
+                >
                   <Button
                     text="simple"
                     background={background}
                     color="white-color"
                     buttonClasses="van-detail-button"
                   ></Button>
-                  <h1 className="van-detail-h1">{van.name}</h1>
+                  <h1 className="van-detail-h1--XLL">{van.name}</h1>
                 </div>
-                <h2 className="van-detail-h2">
-                  <span className="bold">${van.price}</span>/day
+                <h2
+                  className={
+                    windowWidth >= 1310
+                      ? "van-detail-h2--XLL"
+                      : "van-detail-h2--XL"
+                  }
+                >
+                  <span
+                    className={windowWidth >= 1310 ? "bold--XLL" : "bold--XL"}
+                  >
+                    ${van.price}
+                  </span>
+                  /day
                 </h2>
               </div>
-              <p className="van-detail-descreption">{van.description}</p>
+              <p
+                className={`${
+                  windowWidth >= 1310
+                    ? "van-detail-descreption--XLL"
+                    : "van-detail-descreption--XL"
+                } grow`}
+              >
+                {van.description}
+              </p>
               <Button
                 text="Rent this van"
                 color="white-color"
@@ -69,7 +136,6 @@ export default function VanDetail() {
           <div className="grow"></div>
         </>
       )}
-      <Footer />
     </>
   );
 }

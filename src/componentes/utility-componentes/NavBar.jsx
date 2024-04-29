@@ -18,7 +18,7 @@ export default function Navbar() {
     });
   }
   return (
-    <nav className="flex-spacebetween nav">
+    <nav className="flex-spacebetween nav layout-padding">
       <Link className="logo" to="/" onClick={() => handleLinkToggle("home")}>
         #VANLIF
       </Link>

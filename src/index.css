@@ -16,7 +16,7 @@ html {
 /*Utility classes*/
 
 .layout-margin {
-  margin: 1rem 2rem;
+  margin: 50px;
 }
 
 .mr-b-5 {
@@ -44,7 +44,7 @@ html {
 }
 
 .layout-padding {
-  padding: 1rem 2rem;
+  padding: 50px;
 }
 
 .pd-l-2 {
@@ -203,7 +203,6 @@ body::-webkit-scrollbar {
 
 .nav {
   height: 100px;
-  padding: 2.5rem 2rem;
 }
 
 .logo {
@@ -416,8 +415,10 @@ body::-webkit-scrollbar {
   justify-items: center;
 }
 
-.van-detail {
-  margin: 1rem 2rem 2rem;
+
+.van-detail-caption {
+  flex: 1;
+  overflow: hidden;
 }
 
 .arrow {
@@ -432,7 +433,7 @@ body::-webkit-scrollbar {
 }
 
 .van-detail-img-container {
-  margin: 3rem 0;
+  margin-top: 50px;
 }
 
 .van-detail-img-container img {
@@ -441,24 +442,39 @@ body::-webkit-scrollbar {
 }
 
 .van-detail-button {
-  width: clamp(100px, 40%, 500px);
+  width: clamp(200px, 40%, 500px);
 }
 
-.van-detail-h1 {
+.van-detail-h1--XLL {
   text-align: end;
   font-size: 2.5rem;
 }
 
-.van-detail-h2 {
+.van-detail-h2--XLL {
   font-weight: 100;
 }
 
-.bold {
+.van-detail-h2--XL {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.bold--XLL {
   font-size: 2rem;
   font-weight: 900;
 }
 
-.van-detail-descreption {
+.bold--XL {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.van-detail-descreption--XLL {
+  font-size: 2.2rem;
+  font-weight: 500;
+}
+
+.van-detail-descreption--XL {
   font-size: 1.8rem;
   font-weight: 500;
 }
