@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Button from "../button";
+import Button from "../utility-componentes/button";
 export default function VanCard(props) {
   const [background, setBackground] = useState(null);
   useEffect(() => {

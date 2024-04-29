@@ -15,6 +15,9 @@ html {
 
 /*Utility classes*/
 
+.layout-margin {
+  margin: 1rem 2rem;
+}
 
 .mr-b-5 {
   margin-bottom: 5px;
@@ -38,6 +41,10 @@ html {
 
 .mr-r-20 {
   margin-right: 20px;
+}
+
+.layout-padding {
+  padding: 1rem 2rem;
 }
 
 .pd-l-2 {
@@ -71,6 +78,14 @@ html {
 
 .center {
   align-items: center;
+}
+
+.center-position-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .flex-center {
@@ -216,7 +231,9 @@ body::-webkit-scrollbar {
 }
 
 .nav_list {
-  width: 150px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
 }
 
 .image_container {
@@ -319,6 +336,11 @@ body::-webkit-scrollbar {
 .about-card-button {
   width: 25%;
   margin-top: 3rem;
+}
+
+.vans {
+  display: flex;
+  flex-direction: column;
 }
 
 .vans-main {

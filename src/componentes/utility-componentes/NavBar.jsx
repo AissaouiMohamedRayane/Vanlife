@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+export default function Navbar() {
   const [linkStates, setLinkStates] = useState({
-    about: props.link === "about",
-    vans: props.link === "vans",
+    about: false,
+    vans: false,
+    host: false,
   });
 
   function handleLinkToggle(link) {
@@ -21,7 +22,14 @@ export default function Navbar(props) {
       <Link className="logo" to="/" onClick={() => handleLinkToggle("home")}>
         #VANLIF
       </Link>
-      <div className="flex-spacebetween nav_list">
+      <div className="nav_list">
+        <Link
+          className={linkStates.host ? " underline" : "nav_link"}
+          to="/host"
+          onClick={() => handleLinkToggle("host")}
+        >
+          Host
+        </Link>
         <Link
           className={linkStates.about ? " underline" : "nav_link"}
           to="/about"
