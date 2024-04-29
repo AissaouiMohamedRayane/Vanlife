@@ -1,9 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import Button from "../utility-componentes/button";
-import Navbar from "../utility-componentes/NavBar";
 import "../../fake-server/vans-data";
-import Footer from "../utility-componentes/footer";
 import arrow from "../../assets/Arrow1.svg";
 export default function VanDetail() {
   const parm = useParams();
@@ -15,6 +13,11 @@ export default function VanDetail() {
 
   const imageRef = useRef(1);
 
+  function image() {
+    const height = imageRef.current.clientHeight;
+    setImageHeight(`${height}px`);
+  }
+
   useEffect(() => {
     const updateImageHeight = () => {
       const height = imageRef.current.clientHeight;
@@ -22,23 +25,19 @@ export default function VanDetail() {
       if (imageRef.current) {
         const height = imageRef.current.clientHeight;
         setImageHeight(`${height}px`);
-        console.log(imageHeight);
       }
     };
 
     const handleResize = () => {
+      updateImageHeight();
       setWindowWidth(window.innerWidth);
     };
 
-    updateImageHeight();
-
     window.addEventListener("resize", () => {
-      updateImageHeight();
       handleResize();
     });
 
     return () => {
-      window.removeEventListener("resize", updateImageHeight);
       window.removeEventListener("resize", handleResize);
     };
   }, []);
@@ -75,7 +74,7 @@ export default function VanDetail() {
               windowWidth >= 670 ? "flex" : "flex-column"
             } item-start gap-50`}
           >
-            <img src={van.imageUrl} ref={imageRef} alt="image" />
+            <img src={van.imageUrl} ref={imageRef} onLoad={image} alt="image" />
             <figcaption
               className={`van-detail-caption flex-column ${
                 windowWidth >= 1310 ? "gap-40" : "gap-20"
