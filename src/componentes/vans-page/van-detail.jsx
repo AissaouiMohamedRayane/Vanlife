@@ -69,11 +69,17 @@ export default function VanDetail() {
             <Link
               to="/vans"
               className={`${
-                windowWidth > 580 ? "van-detail-link" : "van-detail-link--mobile"
+                windowWidth > 580
+                  ? "van-detail-link"
+                  : "van-detail-link--mobile"
               }`}
             >
               <span className="mr-r-20">
-                <img className={windowWidth > 580 ? 'arrow' : 'arrow--mobile'} src={arrow} alt="" />
+                <img
+                  className={windowWidth > 580 ? "arrow" : "arrow--mobile"}
+                  src={arrow}
+                  alt=""
+                />
               </span>
               Back to all vans
             </Link>
@@ -108,15 +114,23 @@ export default function VanDetail() {
                     text="simple"
                     background={background}
                     color="white-color"
-                    buttonClasses={`van-detail-button ${
+                    buttonClasses={`${
+                      windowWidth > 350
+                        ? "van-detail-button"
+                        : "van-detail-button--mobile"
+                    } ${
                       windowWidth >= 1077
                         ? ""
                         : "van-detail-button-font-size--XL "
-                    }`}
+                    } ${windowWidth < 350 ? "" : ""}`}
                   ></Button>
                   <h1
                     className={`van-detail-h1--XLL nowrap ${
-                      windowWidth >= 1077 ? "" : "van-detail-h1--XL "
+                      windowWidth >= 1077
+                        ? ""
+                        : windowWidth > 280
+                        ? "van-detail-h1--XL"
+                        : "van-detail-h1--mobile"
                     }`}
                   >
                     {van.name}

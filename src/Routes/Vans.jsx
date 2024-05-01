@@ -58,6 +58,7 @@ export default function VansBody() {
       });
       return updatedState;
     });
+
   }
   return (
     <main className="vans-main">

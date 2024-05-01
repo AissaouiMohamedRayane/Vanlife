@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import menu from "../../assets/menu.svg";
 
 export default function Navbar() {
   const [linkStates, setLinkStates] = useState({
@@ -47,7 +48,7 @@ export default function Navbar() {
       >
         #VANLIF
       </Link>
-      <div className="nav-container relative">
+      <div className={`nav-container ${navWidth > 335 ? "" : "display-none"}`}>
         <div
           className={`flex ${
             navWidth <= 680 ? (navWidth <= 415 ? "gap-20" : "gap-30") : "gap-50"
@@ -100,6 +101,11 @@ export default function Navbar() {
           </Link>
         </div>
       </div>
+      <img
+        src={menu}
+        className={` ${navWidth > 335 ? "display-none" : ""}`}
+        alt=""
+      />
     </nav>
   );
 }
