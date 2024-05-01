@@ -60,11 +60,20 @@ export default function VanDetail() {
   return (
     <>
       {van !== 1 ? (
-        <div className="van-detail grow layout-margin">
+        <div
+          className={`van-detail grow ${
+            windowWidth > 580 ? "layout-margin" : "layout-margin--mobile"
+          }`}
+        >
           <div className="flex van-detail-link-container">
-            <Link to="/vans" className="van-detail-link">
+            <Link
+              to="/vans"
+              className={`${
+                windowWidth > 580 ? "van-detail-link" : "van-detail-link--mobile"
+              }`}
+            >
               <span className="mr-r-20">
-                <img className="arrow" src={arrow} alt="" />
+                <img className={windowWidth > 580 ? 'arrow' : 'arrow--mobile'} src={arrow} alt="" />
               </span>
               Back to all vans
             </Link>

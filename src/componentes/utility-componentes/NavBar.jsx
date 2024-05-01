@@ -29,32 +29,70 @@ export default function Navbar() {
     });
   }
   return (
-    <nav className="flex-spacebetween nav layout-padding">
-      <Link className="logo" to="/" onClick={() => handleLinkToggle("home")}>
+    <nav
+      className={`flex-spacebetween nav ${
+        navWidth > 580 ? "layout-padding" : "layout-padding--mobile"
+      }`}
+    >
+      <Link
+        className={
+          navWidth > 580
+            ? "logo"
+            : navWidth > 390
+            ? "logo--mobile"
+            : "logo--mobile--S"
+        }
+        to="/"
+        onClick={() => handleLinkToggle("home")}
+      >
         #VANLIF
       </Link>
       <div className="nav-container relative">
         <div
-          className={`flex ${navWidth <= 680 ? "gap-30" : "gap-50"} ${
-            navWidth > 580 ? "" : "display-none"
+          className={`flex ${
+            navWidth <= 680 ? (navWidth <= 415 ? "gap-20" : "gap-30") : "gap-50"
           }`}
         >
           <Link
-            className={linkStates.host ? " underline" : "nav_link"}
+            className={`${
+              linkStates.host ? " underline" : "no-decoration_link"
+            } ${
+              navWidth > 580
+                ? "nav_link"
+                : navWidth > 390
+                ? "nav_link--mobile"
+                : "nav_link--mobile--S"
+            }`}
             to="/host"
             onClick={() => handleLinkToggle("host")}
           >
             Host
           </Link>
           <Link
-            className={linkStates.about ? " underline" : "nav_link"}
+            className={`${
+              linkStates.about ? " underline" : "no-decoration_link"
+            } ${
+              navWidth > 580
+                ? "nav_link"
+                : navWidth > 390
+                ? "nav_link--mobile"
+                : "nav_link--mobile--S"
+            }`}
             to="/about"
             onClick={() => handleLinkToggle("about")}
           >
             About
           </Link>
           <Link
-            className={linkStates.vans ? " underline" : "nav_link"}
+            className={`${
+              linkStates.vans ? " underline" : "no-decoration_link"
+            } ${
+              navWidth > 580
+                ? "nav_link"
+                : navWidth > 390
+                ? "nav_link--mobile"
+                : "nav_link--mobile--S"
+            }`}
             to="/vans"
             onClick={() => handleLinkToggle("vans")}
           >

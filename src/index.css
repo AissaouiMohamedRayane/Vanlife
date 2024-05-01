@@ -20,6 +20,9 @@ html {
 .layout-margin {
   margin: 50px;
 }
+.layout-margin--mobile {
+  margin: 0 25px 25px;
+}
 
 .mr-b-5 {
   margin-bottom: 5px;
@@ -47,6 +50,10 @@ html {
 
 .layout-padding {
   padding: 50px;
+}
+
+.layout-padding--mobile {
+  padding: 25px;
 }
 
 .pd-l-2 {
@@ -118,6 +125,10 @@ html {
 
 .gap-5 {
   gap: 5px;
+}
+
+.gap-10 {
+  gap: 10px;
 }
 
 .gap-20 {
@@ -225,7 +236,29 @@ body::-webkit-scrollbar {
   font-weight: 800;
 }
 
+.logo--mobile {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.logo--mobile--S {
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
 .logo:any-link {
+  color: black;
+  text-decoration: none;
+}
+.logo--mobile:any-link {
+  color: black;
+  text-decoration: none;
+}
+
+
+.logo--mobile--S:any-link {
   color: black;
   text-decoration: none;
 }
@@ -236,7 +269,20 @@ body::-webkit-scrollbar {
   color: #4D4D4D;
 }
 
-.nav_link:any-link {
+.nav_link--mobile {
+  font-size: 1.3rem;
+  font-weight: 100;
+  color: #4D4D4D;
+}
+
+.nav_link--mobile--S {
+  font-size: 1rem;
+  font-weight: 100;
+  color: #4D4D4D;
+}
+
+
+.no-decoration_link:any-link {
   text-decoration: none;
 }
 
@@ -446,6 +492,10 @@ body::-webkit-scrollbar {
 .van-detail-link:any-link {
   color: #201F1D;
   font-size: 1.5rem;
+}
+.van-detail-link--mobile:any-link {
+  color: #201F1D;
+  font-size: 1.1rem;
 }
 
 .van-detail-img-container {
