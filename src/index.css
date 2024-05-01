@@ -508,6 +508,7 @@ body::-webkit-scrollbar {
 .van-detail-img-container img {
   width: clamp(300px, 40%, 800px);
   height: auto;
+  border-radius: 10px;
 }
 
 .van-detail-button {
@@ -515,6 +516,7 @@ body::-webkit-scrollbar {
 }
 
 .van-detail-button--mobile {
+  border-radius: 5px ;
   width: 100%
 }
 
