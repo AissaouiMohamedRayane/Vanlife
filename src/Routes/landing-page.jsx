@@ -1,4 +1,4 @@
-import backImage from "../assets/image.svg";
+import backImage from "../assets/image.png";
 import Button from "../componentes/utility-componentes/button";
 import { Link } from "react-router-dom";
 export default function Body() {

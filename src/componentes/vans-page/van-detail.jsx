@@ -71,10 +71,16 @@ export default function VanDetail() {
           </div>
           <figure
             className={`van-detail-img-container ${
-              windowWidth >= 670 ? "flex" : "flex-column"
+              windowWidth >= 770 ? "flex" : "flex-column"
             } item-start gap-50`}
           >
-            <img src={van.imageUrl} ref={imageRef} onLoad={image} alt="image" />
+            <img
+              src={van.imageUrl}
+              className={windowWidth < 770 ? "full-width" : ""}
+              ref={imageRef}
+              onLoad={image}
+              alt="image"
+            />
             <figcaption
               className={`van-detail-caption flex-column ${
                 windowWidth >= 1310 ? "gap-40" : "gap-20"
@@ -93,9 +99,19 @@ export default function VanDetail() {
                     text="simple"
                     background={background}
                     color="white-color"
-                    buttonClasses="van-detail-button"
+                    buttonClasses={`van-detail-button ${
+                      windowWidth >= 1077
+                        ? ""
+                        : "van-detail-button-font-size--XL "
+                    }`}
                   ></Button>
-                  <h1 className="van-detail-h1--XLL">{van.name}</h1>
+                  <h1
+                    className={`van-detail-h1--XLL nowrap ${
+                      windowWidth >= 1077 ? "" : "van-detail-h1--XL "
+                    }`}
+                  >
+                    {van.name}
+                  </h1>
                 </div>
                 <h2
                   className={
@@ -105,7 +121,7 @@ export default function VanDetail() {
                   }
                 >
                   <span
-                    className={windowWidth >= 1310 ? "bold--XLL" : "bold--XL"}
+                    className={windowWidth >= 1110 ? "bold--XLL" : "bold--XL"}
                   >
                     ${van.price}
                   </span>
@@ -116,7 +132,11 @@ export default function VanDetail() {
                 className={`${
                   windowWidth >= 1310
                     ? "van-detail-descreption--XLL"
-                    : "van-detail-descreption--XL"
+                    : windowWidth >= 1077
+                    ? "van-detail-descreption--XL"
+                    : windowWidth >= 978
+                    ? "van-detail-descreption--L"
+                    : "van-detail-descreption--M"
                 } grow`}
               >
                 {van.description}
@@ -125,6 +145,9 @@ export default function VanDetail() {
                 text="Rent this van"
                 color="white-color"
                 background="orange-background"
+                buttonClasses={` ${
+                  windowWidth >= 1077 ? "" : "van-detail-button-font-size--XL "
+                }`}
               ></Button>
             </figcaption>
           </figure>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 /*Reset*/
 * {
   margin: 0;
@@ -7,7 +9,7 @@
 }
 
 html {
-  font-family: sans-serif;
+  font-family: 'Inter' sans-serif;
 }
 
 
@@ -51,6 +53,15 @@ html {
   padding-left: 2rem;
 }
 
+.full-width {
+  width: 100% !important;
+}
+
+.relative {
+  position: relative;
+}
+
+
 .flex-wrap {
   flex-wrap: wrap;
 }
@@ -63,7 +74,6 @@ html {
 .flex {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .item-start {
@@ -189,6 +199,10 @@ html {
   transform: scale(1.1);
 }
 
+.display-none {
+  display: none;
+}
+
 /*End utility classes*/
 body::-webkit-scrollbar {
   display: none;
@@ -206,6 +220,7 @@ body::-webkit-scrollbar {
 }
 
 .logo {
+  font-family: sans-serif;
   font-size: 2.2rem;
   font-weight: 800;
 }
@@ -229,10 +244,10 @@ body::-webkit-scrollbar {
   filter: brightness(170%);
 }
 
-.nav_list {
-  display: flex;
-  align-items: center;
-  gap: 50px;
+.nav-absulote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
 
 .image_container {
@@ -280,6 +295,7 @@ body::-webkit-scrollbar {
 }
 
 .button {
+  font-family: "Inter", sans-serif;
   width: 100%;
   padding: 1rem 2rem;
   border: none;
@@ -445,9 +461,17 @@ body::-webkit-scrollbar {
   width: clamp(200px, 40%, 500px);
 }
 
+.van-detail-button-font-size--XL {
+  font-size: 1.1rem;
+}
+
 .van-detail-h1--XLL {
   text-align: end;
   font-size: 2.5rem;
+}
+
+.van-detail-h1--XL {
+  font-size: 2rem;
 }
 
 .van-detail-h2--XLL {
@@ -470,11 +494,22 @@ body::-webkit-scrollbar {
 }
 
 .van-detail-descreption--XLL {
-  font-size: 2.2rem;
+  font-size: 2.1rem;
   font-weight: 500;
+  line-height: 3rem;
 }
 
 .van-detail-descreption--XL {
   font-size: 1.8rem;
   font-weight: 500;
+}
+
+.van-detail-descreption--L {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.van-detail-descreption--M {
+  font-size: 1.1rem;
+  font-weight: 200;
 }

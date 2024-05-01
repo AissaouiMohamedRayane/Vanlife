@@ -20,14 +20,11 @@ const hostRoutes = (
     <Route path="/host/reviews" element={<Reviews />} />
   </>
 );
-
-const layoutRoutes = (
+const errorRoutes = (
   <>
-    <Route path="/" element={<App />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/vans" element={<Vans />} />
-    <Route path="/vans/:id" element={<VanDetail />} />
-    <Route element={<Host />}>{hostRoutes}</Route>
+    <Route path=":anything" element={<div>Error 404</div>} />
+    <Route path="about/:anything" element={<div className="grow">Error 404</div>} />
+    <Route path="host/:anything" element={<div className="grow">Error 404</div>} />
   </>
 );
 
@@ -37,4 +34,14 @@ const AppRoutes = () => (
   </Routes>
 );
 
+const layoutRoutes = (
+  <>
+    <Route path="/" element={<App />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/vans" element={<Vans />} />
+    <Route path="/vans/:id" element={<VanDetail />} />
+    {errorRoutes}
+    <Route element={<Host />}>{hostRoutes}</Route>
+  </>
+);
 export default AppRoutes;
