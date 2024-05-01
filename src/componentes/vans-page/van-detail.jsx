@@ -111,7 +111,7 @@ export default function VanDetail() {
                   }`}
                 >
                   <Button
-                    text="simple"
+                    text={van.type}
                     background={background}
                     color="white-color"
                     buttonClasses={`${
