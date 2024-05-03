@@ -12,36 +12,57 @@ import Income from "./componentes/host/income.jsx";
 import HostVans from "./componentes/host/host-vans.jsx";
 import Reviews from "./componentes/host/reviews.jsx";
 
+import VanDetailLayout from "./Routes/vans-detail-layout.jsx";
+import Pricing from "./componentes/host/details/pricing.jsx";
+import Photos from "./componentes/host/details/Photos.jsx";
+
 const hostRoutes = (
   <>
-    <Route path="/host" element={<Dashboard />} />
-    <Route path="/host/income" element={<Income />} />
-    <Route path="/host/vans" element={<HostVans />} />
-    <Route path="/host/reviews" element={<Reviews />} />
+    <Route index element={<Dashboard />} />
+    <Route path="income" element={<Income />} />
+    <Route path="vans" element={<HostVans />} />
+    <Route path="vans/:id" element={<VanDetailLayout host={true} />}>
+      <Route index element={<VanDetail />} />
+      <Route path="pricing" element={<Pricing />} />
+      <Route path="photos" element={<Photos />} />
+    </Route>
+    <Route path="reviews" element={<Reviews />} />
   </>
 );
 const errorRoutes = (
   <>
     <Route path=":anything" element={<div>Error 404</div>} />
-    <Route path="about/:anything" element={<div className="grow">Error 404</div>} />
-    <Route path="host/:anything" element={<div className="grow">Error 404</div>} />
+    <Route
+      path="about/:anything"
+      element={<div className="grow">Error 404</div>}
+    />
+    <Route
+      path="host/:anything"
+      element={<div className="grow">Error 404</div>}
+    />
   </>
-);
-
-const AppRoutes = () => (
-  <Routes>
-    <Route element={<Layout />}>{layoutRoutes}</Route>
-  </Routes>
 );
 
 const layoutRoutes = (
   <>
-    <Route path="/" element={<App />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/vans" element={<Vans />} />
-    <Route path="/vans/:id" element={<VanDetail />} />
+    <Route index element={<App />} />
+    <Route path="about" element={<About />} />
+    <Route path="vans" element={<Vans />} />
+    <Route path="vans/:id" element={<VanDetailLayout host={false} />}>
+      <Route index element={<VanDetail />} />
+    </Route>
     {errorRoutes}
-    <Route element={<Host />}>{hostRoutes}</Route>
+    <Route path="host" element={<Host />}>
+      {hostRoutes}
+    </Route>
   </>
 );
+const AppRoutes = () => (
+  <Routes>
+    <Route path="/" element={<Layout />}>
+      {layoutRoutes}
+    </Route>
+  </Routes>
+);
+
 export default AppRoutes;

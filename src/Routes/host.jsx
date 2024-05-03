@@ -1,54 +1,60 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Outlet } from "react-router-dom";
 export default function Host() {
-  const [linkStates, setLinkStates] = useState({
-    dashboard: true,
-    income: false,
-    vans: false,
-    reviews: false,
-  });
+  // const [NavLinkStates, setNavLinkStates] = useState({
+  //   dashboard: true,
+  //   income: false,
+  //   vans: false,
+  //   reviews: false,
+  // });
 
-  function handleLinkToggle(link) {
-    setLinkStates((prev) => {
-      const updatedStates = {};
-      Object.keys(prev).forEach((key) => {
-        updatedStates[key] = key === link;
-      });
-      return updatedStates;
-    });
-  }
+  // function handleNavLinkToggle(NavLink) {
+  //   setNavLinkStates((prev) => {
+  //     const updatedStates = {};
+  //     Object.keys(prev).forEach((key) => {
+  //       updatedStates[key] = key === NavLink;
+  //     });
+  //     return updatedStates;
+  //   });
+  // }
   return (
     <main className="host-main grow">
-      <nav className="host-nav nav_list flex-wrap layout-margin">
-        <Link
-          className={linkStates.dashboard ? " underline" : "nav_link"}
-          to="host"
-          onClick={() => handleLinkToggle("dashboard")}
+      <nav className="host-nav flex flex-wrap layout-margin gap-40">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "underline" : "nav_link no-decoration_link"
+          }
+          end
+          to=""
         >
           Dashboard
-        </Link>
-        <Link
-          className={linkStates.income ? " underline" : "nav_link"}
-          to="host/income"
-          onClick={() => handleLinkToggle("income")}
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "underline" : "nav_link no-decoration_link"
+          }
+          
+          to="income"
         >
           Income
-        </Link>
-        <Link
-          className={linkStates.vans ? " underline" : "nav_link"}
-          to="host/vans"
-          onClick={() => handleLinkToggle("vans")}
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "underline" : "nav_link no-decoration_link"
+          }
+          to="vans"
         >
           Vans
-        </Link>
-        <Link
-          className={linkStates.reviews ? " underline" : "nav_link"}
-          to="host/reviews"
-          onClick={() => handleLinkToggle("reviews")}
+        </NavLink>
+        <NavLink
+          className={({isActive}) =>
+            isActive ? "underline" : "nav_link no-decoration_link"
+          }
+          to="reviews"
         >
           Reviews
-        </Link>
+        </NavLink>
       </nav>
       <Outlet />
     </main>
