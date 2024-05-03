@@ -1,7 +1,5 @@
-import { useParams, Link, Outlet } from "react-router-dom";
+import { useParams, Link, Outlet, NavLink } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import "../fake-server/vans-data";
 import arrow from "../assets/Arrow1.svg";
 export default function VanDetailLayout(props) {
@@ -13,16 +11,11 @@ export default function VanDetailLayout(props) {
 
   const imageRef = useRef(1);
 
-  const navigate = useNavigate();
-
   function image() {
     const height = imageRef.current.clientHeight;
     setImageHeight(`${height}px`);
   }
 
-  const goBack = () => {
-    navigate(-1);
-  };
   useEffect(() => {
     const updateImageHeight = () => {
       const height = imageRef.current.clientHeight;
@@ -52,7 +45,6 @@ export default function VanDetailLayout(props) {
       .then((res) => res.json())
       .then((data) => setVan(data.vans));
   }, []);
- 
 
   const vanDetailNav = (
     <nav className="van-detail-nav flex gap-30">
@@ -112,7 +104,8 @@ export default function VanDetailLayout(props) {
         >
           <div className="flex van-detail-link-container">
             <Link
-              onClick={goBack}
+              to=".."
+              relative="path"
               className={`${
                 windowWidth > 580
                   ? "van-detail-link"
@@ -150,7 +143,7 @@ export default function VanDetailLayout(props) {
               }}
             >
               {props.host && vanDetailNav}
-              <Outlet />
+              <Outlet context={[van, setVan]} />
             </figcaption>
           </figure>
         </div>

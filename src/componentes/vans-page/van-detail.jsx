@@ -1,22 +1,13 @@
-import { useParams, Link } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import { NavLink } from "react-router-dom";
 import Button from "../utility-componentes/button";
 import "../../fake-server/vans-data";
-import arrow from "../../assets/Arrow1.svg";
 export default function VanDetail(props) {
-  const parm = useParams();
-  const vanId = parm.id;
-  const [van, setVan] = useState(1);
+  const [van, setVan] = useOutletContext();
   const [background, setBackground] = useState({});
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
-
-
-
   useEffect(() => {
-    
-
     const handleResize = () => {
       updateImageHeight();
       setWindowWidth(window.innerWidth);
@@ -32,11 +23,6 @@ export default function VanDetail(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`https://vans/${vanId}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
-  }, []);
-  useEffect(() => {
     if (van.type === "simple") {
       setBackground("dark-orange-background");
     } else if (van.type === "rugged") {
@@ -49,7 +35,6 @@ export default function VanDetail(props) {
   return (
     <>
       <div className="flex-column gap-20">
-
         <div
           className={`flex-spacebetween gap-30 ${
             windowWidth >= 870 ? "" : "flex-wrap"
