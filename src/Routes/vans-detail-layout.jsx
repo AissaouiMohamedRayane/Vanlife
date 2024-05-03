@@ -8,7 +8,6 @@ export default function VanDetailLayout(props) {
   const parm = useParams();
   const vanId = parm.id;
   const [van, setVan] = useState(1);
-  const [background, setBackground] = useState({});
   const [imageHeight, setImageHeight] = useState("0px");
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -49,19 +48,11 @@ export default function VanDetailLayout(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`https://vans/${vanId}`)
+    fetch(`https://${props.host ? "host/" : ""}vans/${vanId}`)
       .then((res) => res.json())
       .then((data) => setVan(data.vans));
   }, []);
-  useEffect(() => {
-    if (van.type === "simple") {
-      setBackground("dark-orange-background");
-    } else if (van.type === "rugged") {
-      setBackground("green-background");
-    } else if (van.type === "luxury") {
-      setBackground("black-background");
-    }
-  }, [van]);
+ 
 
   const vanDetailNav = (
     <nav className="van-detail-nav flex gap-30">
