@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Button from "../utility-componentes/button";
 import "../../fake-server/vans-data";
 export default function VanDetail(props) {

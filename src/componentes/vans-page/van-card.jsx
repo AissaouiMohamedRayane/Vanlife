@@ -14,7 +14,7 @@ export default function VanCard(props) {
   }, []);
 
   return (
-    <Link to={props.id} className="no-decoration black-color hover">
+    <>
       <figure className="van-card">
         <img src={props.img} alt="image" />
         <figcaption className="vans-card-text flex-column">
@@ -30,9 +30,9 @@ export default function VanCard(props) {
             color="white-color"
             background={background}
             buttonClasses="van-card-button hover"
-          />
+            />
         </figcaption>
       </figure>
-    </Link>
+            </>
   );
 }

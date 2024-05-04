@@ -1,23 +1,31 @@
 import VanCard from "./../componentes/vans-page/van-card";
 import "../fake-server/vans-data";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link, useLocation } from "react-router-dom";
 export default function VansBody() {
   const [type, setType] = useSearchParams();
   const [vans, setVans] = useState([]);
   const [filterdVans, setFilterdVans] = useState(["sad"]);
   const [activeButtons, setActivebuttons] = useState({
-    type1: false,
-    type2: false,
-    type3: false,
+    type1: type.get("type1") ? true : false,
+    type2: type.get("type2") ? true : false,
+    type3: type.get("type3") ? true : false,
   });
   useEffect(() => {
     fetch("https://vans")
       .then((res) => res.json())
       .then((data) => setVans(data.vans));
   }, []);
+
+  useEffect(() => {
+    setActivebuttons({
+      type1: type.get("type1") ? true : false,
+      type2: type.get("type2") ? true : false,
+      type3: type.get("type3") ? true : false,
+    });
+  }, [type]);
+
   const hasAnyParameters = type.toString().trim() !== "";
-  console.log(hasAnyParameters);
   useEffect(() => {
     setFilterdVans(
       hasAnyParameters
@@ -33,14 +41,20 @@ export default function VansBody() {
   const mapedVans = filterdVans
     ? filterdVans.map((van) => {
         return (
-          <VanCard
+          <Link
+            to={van.id}
             key={van.id}
-            id={van.id}
-            img={van.imageUrl}
-            vanName={van.name}
-            price={van.price}
-            type={van.type}
-          />
+            state={activeButtons}
+            className="no-decoration black-color hover"
+          >
+            <VanCard
+              id={van.id}
+              img={van.imageUrl}
+              vanName={van.name}
+              price={van.price}
+              type={van.type}
+            />
+          </Link>
         );
       })
     : null;

@@ -1,4 +1,11 @@
-import { useParams, Link, Outlet, NavLink } from "react-router-dom";
+import {
+  useParams,
+  Link,
+  Outlet,
+  NavLink,
+  useNavigate,
+  useLocation,
+} from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import "../fake-server/vans-data";
 import arrow from "../assets/Arrow1.svg";
@@ -10,6 +17,41 @@ export default function VanDetailLayout(props) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const imageRef = useRef(1);
+
+  const navigate = useNavigate();
+
+  const { state } = useLocation();
+
+  const location = state;
+
+  function returnToVans() {
+    if (!location.type1 && !location.type2 && !location.type3) {
+      return "Back to all Vans";
+    } else if (location.type1 && location.type2 && location.type3) {
+      return "Back to all Vans";
+    } else {
+      let features = [];
+
+      if (location.type1) {
+        features.push("simple");
+      }
+      if (location.type2) {
+        features.push("luxury");
+      }
+      if (location.type3) {
+        features.push("rugged");
+      }
+
+      return (
+        "Back to " +
+        (features.length > 1 ? features.join(" and ") : features[0]) +
+        " Vans"
+      );
+    }
+  }
+  function goBack() {
+    navigate(-1);
+  }
 
   function image() {
     const height = imageRef.current.clientHeight;
@@ -105,6 +147,8 @@ export default function VanDetailLayout(props) {
           <div className="flex van-detail-link-container">
             <Link
               to=".."
+              state={location ? location : null}
+              onClick={() => (props.host ? null : goBack())}
               relative="path"
               className={`${
                 windowWidth > 580
@@ -119,7 +163,7 @@ export default function VanDetailLayout(props) {
                   alt=""
                 />
               </span>
-              Back to all vans
+              {returnToVans()}
             </Link>
           </div>
           <figure
