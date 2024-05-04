@@ -9,7 +9,6 @@ export default function VanDetail(props) {
 
   useEffect(() => {
     const handleResize = () => {
-      updateImageHeight();
       setWindowWidth(window.innerWidth);
     };
 

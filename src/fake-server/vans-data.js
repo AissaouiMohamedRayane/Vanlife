@@ -77,9 +77,15 @@ createServer({
   routes() {
     this.urlPrefix = "https://";
     this.logging = false;
+    this.timing = 2000;
 
     this.get("/vans", (schema, request) => {
       return schema.vans.all();
+      return new MirageResponse(
+        400,
+        { "Content-Type": "application/json" },
+        { error: "Error fetching data" }
+      );
     });
 
     this.get("/vans/:id", (schema, request) => {
@@ -90,6 +96,11 @@ createServer({
     this.get("/host/vans", (schema, request) => {
       // Hard-code the hostId for now
       return schema.vans.where({ hostId: "123" });
+      return new MirageResponse(
+        400,
+        { "Content-Type": "application/json" },
+        { error: "Error fetching data" }
+      );
     });
 
     this.get("/host/vans/:id", (schema, request) => {

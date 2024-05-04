@@ -29,29 +29,19 @@ const hostRoutes = (
     <Route path="reviews" element={<Reviews />} />
   </>
 );
-const errorRoutes = (
-  <>
-    <Route path=":anything" element={<div>Error 404</div>} />
-    <Route
-      path="about/:anything"
-      element={<div className="grow">Error 404</div>}
-    />
-    <Route
-      path="host/:anything"
-      element={<div className="grow">Error 404</div>}
-    />
-  </>
-);
+const errorRoutes = <Route path="*" element={<h1 className="grow layout-margin">Page not found</h1>} />;
 
 const layoutRoutes = (
   <>
     <Route index element={<App />} />
     <Route path="about" element={<About />} />
     <Route path="vans" element={<Vans />} />
+
     <Route path="vans/:id" element={<VanDetailLayout host={false} />}>
       <Route index element={<VanDetail />} />
     </Route>
     {errorRoutes}
+
     <Route path="host" element={<Host />}>
       {hostRoutes}
     </Route>

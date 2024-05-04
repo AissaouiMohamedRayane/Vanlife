@@ -25,6 +25,9 @@ export default function VanDetailLayout(props) {
   const location = state;
 
   function returnToVans() {
+    if (!location) {
+      return "Back to all Vans";
+    }
     if (!location.type1 && !location.type2 && !location.type3) {
       return "Back to all Vans";
     } else if (location.type1 && location.type2 && location.type3) {
@@ -83,9 +86,11 @@ export default function VanDetailLayout(props) {
   }, []);
 
   useEffect(() => {
-    fetch(`https://${props.host ? "host/" : ""}vans/${vanId}`)
-      .then((res) => res.json())
-      .then((data) => setVan(data.vans));
+    const vans = state.vans ? state.vans : state;
+    const foundVan = Object.values(vans).find((van) => van.id === vanId);
+    if (foundVan) {
+      setVan(foundVan);
+    }
   }, []);
 
   const vanDetailNav = (
@@ -138,65 +143,56 @@ export default function VanDetailLayout(props) {
 
   return (
     <>
-      {van !== 1 ? (
-        <div
-          className={`van-detail grow ${
-            windowWidth > 580 ? "layout-margin" : "layout-margin--mobile"
-          }`}
-        >
-          <div className="flex van-detail-link-container">
-            <Link
-              to=".."
-              state={location ? location : null}
-              onClick={() => (props.host ? null : goBack())}
-              relative="path"
-              className={`${
-                windowWidth > 580
-                  ? "van-detail-link"
-                  : "van-detail-link--mobile"
-              }`}
-            >
-              <span className="mr-r-20">
-                <img
-                  className={windowWidth > 580 ? "arrow" : "arrow--mobile"}
-                  src={arrow}
-                  alt=""
-                />
-              </span>
-              {returnToVans()}
-            </Link>
-          </div>
-          <figure
-            className={`van-detail-img-container ${
-              windowWidth >= 990 ? "flex" : "flex-column"
-            } item-start gap-50`}
+      <div
+        className={`van-detail grow ${
+          windowWidth > 580 ? "layout-margin" : "layout-margin--mobile"
+        }`}
+      >
+        <div className="flex van-detail-link-container">
+          <Link
+            to=".."
+            state={location ? location : null}
+            onClick={() => (props.host ? null : goBack())}
+            relative="path"
+            className={`${
+              windowWidth > 580 ? "van-detail-link" : "van-detail-link--mobile"
+            }`}
           >
-            <img
-              src={van.imageUrl}
-              className={windowWidth < 990 ? "full-width" : ""}
-              ref={imageRef}
-              onLoad={image}
-              alt="image"
-            />
-            <figcaption
-              className={`van-detail-caption flex-column ${
-                windowWidth >= 1410 ? "gap-40" : "gap-20"
-              }`}
-              style={{
-                height: imageHeight,
-              }}
-            >
-              {props.host && vanDetailNav}
-              <Outlet context={[van, setVan]} />
-            </figcaption>
-          </figure>
+            <span className="mr-r-20">
+              <img
+                className={windowWidth > 580 ? "arrow" : "arrow--mobile"}
+                src={arrow}
+                alt=""
+              />
+            </span>
+            {returnToVans()}
+          </Link>
         </div>
-      ) : (
-        <>
-          <h2 className="center-position-absolute">loading...</h2>
-          <div className="grow"></div>
-        </>
-      )}
+        <figure
+          className={`van-detail-img-container ${
+            windowWidth >= 990 ? "flex" : "flex-column"
+          } item-start gap-50`}
+        >
+          <img
+            src={van.imageUrl}
+            className={windowWidth < 990 ? "full-width" : ""}
+            ref={imageRef}
+            onLoad={image}
+            alt="image"
+          />
+          <figcaption
+            className={`van-detail-caption flex-column ${
+              windowWidth >= 1410 ? "gap-40" : "gap-20"
+            }`}
+            style={{
+              height: imageHeight,
+            }}
+          >
+            {props.host && vanDetailNav}
+            <Outlet context={[van, setVan]} />
+          </figcaption>
+        </figure>
+      </div>
     </>
   );
 }

@@ -2,6 +2,7 @@ import VanCard from "./../componentes/vans-page/van-card";
 import "../fake-server/vans-data";
 import { useState, useEffect } from "react";
 import { useSearchParams, Link, useLocation } from "react-router-dom";
+import getVans from "../API/getVans";
 export default function VansBody() {
   const [type, setType] = useSearchParams();
   const [vans, setVans] = useState([]);
@@ -11,10 +12,24 @@ export default function VansBody() {
     type2: type.get("type2") ? true : false,
     type3: type.get("type3") ? true : false,
   });
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState(null);
   useEffect(() => {
-    fetch("https://vans")
-      .then((res) => res.json())
-      .then((data) => setVans(data.vans));
+    async function loadVans() {
+      setLoading(true);
+      try {
+        const data = await getVans();
+        console.log(data);
+        setVans(data);
+      } catch (err) {
+        console.log("asdsa");
+        console.log(err);
+        setErr(err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadVans();
   }, []);
 
   useEffect(() => {
@@ -44,10 +59,11 @@ export default function VansBody() {
           <Link
             to={van.id}
             key={van.id}
-            state={activeButtons}
+            state={{ activeButtons: activeButtons, vans: vans }}
             className="no-decoration black-color hover"
           >
             <VanCard
+            key={van.id}
               id={van.id}
               img={van.imageUrl}
               vanName={van.name}
@@ -121,13 +137,16 @@ export default function VansBody() {
         </span>
       </ul>
       <div className="vans-grid">
-        {vans[0] !== 1 ? (
-          mapedVans
-        ) : (
+        {loading ? (
           <>
-            <h2 className="center-position-absolute">loading...</h2>
-            <div className="grow"></div>
+            <h1 className="grow">loading...</h1>
           </>
+        ) : err ? (
+          <>
+            <h1 className="grow">{err.message}</h1>
+          </>
+        ) : (
+          mapedVans
         )}
       </div>
     </main>
