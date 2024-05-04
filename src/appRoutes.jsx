@@ -29,7 +29,12 @@ const hostRoutes = (
     <Route path="reviews" element={<Reviews />} />
   </>
 );
-const errorRoutes = <Route path="*" element={<h1 className="grow layout-margin">Page not found</h1>} />;
+const errorRoutes = (
+  <Route
+    path="*"
+    element={<h1 className="grow layout-margin">Page not found</h1>}
+  />
+);
 
 const layoutRoutes = (
   <>
@@ -47,12 +52,12 @@ const layoutRoutes = (
     </Route>
   </>
 );
-const AppRoutes = () => (
-  <Routes>
-    <Route path="/" element={<Layout />}>
-      {layoutRoutes}
-    </Route>
-  </Routes>
-);
+const AppRoutes = () => {
+  return (
+      <Route path="/" element={<Layout />}>
+        {layoutRoutes}
+      </Route>
+  );
+};
 
 export default AppRoutes;

@@ -2,10 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import AppRoutes from "./appRoutes.jsx";
 import "./index.css";
-import { BrowserRouter } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  RouterProvider,
+} from "react-router-dom";
+
+const routes = createBrowserRouter(createRoutesFromElements(AppRoutes()));
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <AppRoutes />
-  </BrowserRouter>
+  <RouterProvider router={routes} />
 );
