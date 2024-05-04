@@ -1,54 +1,63 @@
 import VanCard from "./../componentes/vans-page/van-card";
 import "../fake-server/vans-data";
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 export default function VansBody() {
-  const [type, setType] = useState({
-    simple: false,
-    luxury: false,
-    rugged: false,
+  const [type, setType] = useSearchParams();
+  const [vans, setVans] = useState([]);
+  const [filterdVans, setFilterdVans] = useState(["sad"]);
+  const [activeButtons, setActivebuttons] = useState({
+    type1: false,
+    type2: false,
+    type3: false,
   });
-  const [vans, setVans] = useState([1]);
-  const [filterdVans, setFilterdVans] = useState(false);
   useEffect(() => {
     fetch("https://vans")
       .then((res) => res.json())
       .then((data) => setVans(data.vans));
   }, []);
-  const mapedVans = vans.map((van) => {
-    return (
-      <VanCard
-        key={van.id}
-        id={van.id}
-        img={van.imageUrl}
-        vanName={van.name}
-        price={van.price}
-        type={van.type}
-      />
-    );
-  });
-
-  function handleTypeClick(type) {
-    setType((prev) => ({
-      ...prev,
-      [type]: !prev[type],
-    }));
-  }
+  const hasAnyParameters = type.toString().trim() !== "";
+  console.log(hasAnyParameters);
   useEffect(() => {
-    let trueValues = [];
-    let allFalse = true;
-    for (const key in type) {
-      if (type[key] !== false) {
-        allFalse = false;
-        trueValues.push(key);
+    setFilterdVans(
+      hasAnyParameters
+        ? vans.filter(
+            (van) =>
+              van.type === type.get("type1") ||
+              van.type === type.get("type2") ||
+              van.type === type.get("type3")
+          )
+        : vans
+    );
+  }, [vans, type]);
+  const mapedVans = filterdVans
+    ? filterdVans.map((van) => {
+        return (
+          <VanCard
+            key={van.id}
+            id={van.id}
+            img={van.imageUrl}
+            vanName={van.name}
+            price={van.price}
+            type={van.type}
+          />
+        );
+      })
+    : null;
+  function handleTypeClick(key, value) {
+    setActivebuttons((prev) => {
+      return { ...prev, [key]: !prev[key] };
+    });
+    setType((prev) => {
+      const newParams = new URLSearchParams(prev);
+      if (newParams.get(key)) {
+        newParams.delete(key);
+      } else {
+        newParams.set(key, value);
       }
-    }
-
-    if (!allFalse) {
-      setFilterdVans(vans.filter((van) => trueValues.includes(van.type)));
-    } else {
-      setFilterdVans(false);
-    }
-  }, [type]);
+      return newParams;
+    });
+  }
 
   function clearFilter() {
     setType((prev) => {
@@ -58,7 +67,6 @@ export default function VansBody() {
       });
       return updatedState;
     });
-
   }
   return (
     <main className="vans-main">
@@ -66,31 +74,31 @@ export default function VansBody() {
       <ul className="flex vans-list flex-wrap">
         <li
           className={`vans-list-element scale hover ${
-            type.simple
+            activeButtons.type1
               ? "dark-orange-background white-color"
               : "light-orange-background greay-color"
           }`}
-          onClick={() => handleTypeClick("simple")}
+          onClick={() => handleTypeClick("type1", "simple")}
         >
           Simple
         </li>
         <li
           className={`vans-list-element scale hover ${
-            type.luxury
+            activeButtons.type2
               ? "black-background white-color"
               : "light-orange-background greay-color"
           }`}
-          onClick={() => handleTypeClick("luxury")}
+          onClick={() => handleTypeClick("type2", "luxury")}
         >
           luxury
         </li>
         <li
           className={`vans-list-element scale hover ${
-            type.rugged
+            activeButtons.type3
               ? "green-background white-color"
               : "light-orange-background greay-color"
           }`}
-          onClick={() => handleTypeClick("rugged")}
+          onClick={() => handleTypeClick("type3", "rugged")}
         >
           Rugged
         </li>
@@ -100,20 +108,7 @@ export default function VansBody() {
       </ul>
       <div className="vans-grid">
         {vans[0] !== 1 ? (
-          filterdVans ? (
-            filterdVans.map((van) => (
-              <VanCard
-                key={van.id}
-                id={van.id}
-                img={van.imageUrl}
-                vanName={van.name}
-                price={van.price}
-                type={van.type}
-              />
-            ))
-          ) : (
-            mapedVans
-          )
+          mapedVans
         ) : (
           <>
             <h2 className="center-position-absolute">loading...</h2>
