@@ -4,6 +4,8 @@ import App from "./Routes/landing-page.jsx";
 import About from "./Routes/About.jsx";
 
 import Vans from "./Routes/Vans.jsx";
+import { loader as vansLoader } from "./Routes/Vans.jsx";
+import VansErrour from "./componentes/utility-componentes/VansErrour.jsx";
 import VanDetail from "./componentes/vans-page/van-detail.jsx";
 
 import Host from "./Routes/host.jsx";
@@ -40,7 +42,12 @@ const layoutRoutes = (
   <>
     <Route index element={<App />} />
     <Route path="about" element={<About />} />
-    <Route path="vans" element={<Vans />} />
+    <Route
+      path="vans"
+      element={<Vans />}
+      errorElement={<VansErrour />}
+      loader={vansLoader}
+    />
 
     <Route path="vans/:id" element={<VanDetailLayout host={false} />}>
       <Route index element={<VanDetail />} />
@@ -54,9 +61,9 @@ const layoutRoutes = (
 );
 const AppRoutes = () => {
   return (
-      <Route path="/" element={<Layout />}>
-        {layoutRoutes}
-      </Route>
+    <Route path="/" element={<Layout />}>
+      {layoutRoutes}
+    </Route>
   );
 };
 

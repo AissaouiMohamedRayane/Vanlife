@@ -1,11 +1,16 @@
 import VanCard from "./../componentes/vans-page/van-card";
 import "../fake-server/vans-data";
 import { useState, useEffect } from "react";
-import { useSearchParams, Link, useLocation } from "react-router-dom";
+import { useSearchParams, Link, useLoaderData } from "react-router-dom";
 import getVans from "../API/getVans";
+
+export function loader() {
+  return getVans();
+}
+
 export default function VansBody() {
   const [type, setType] = useSearchParams();
-  const [vans, setVans] = useState([]);
+  // const [vans, setVans] = useState([]);
   const [filterdVans, setFilterdVans] = useState(["sad"]);
   const [activeButtons, setActivebuttons] = useState({
     type1: type.get("type1") ? true : false,
@@ -14,24 +19,24 @@ export default function VansBody() {
   });
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
-  useEffect(() => {
-    async function loadVans() {
-      setLoading(true);
-      try {
-        const data = await getVans();
-        console.log(data);
-        setVans(data);
-      } catch (err) {
-        console.log("asdsa");
-        console.log(err);
-        setErr(err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadVans();
-  }, []);
-
+  const vans = useLoaderData();
+  // useEffect(() => {
+  //   async function loadVans() {
+  //     setLoading(true);
+  //     try {
+  //       const data = await getVans();
+  //       setVans(data);
+  //     } catch (err) {
+  //       console.log("asdsa");
+  //       console.log(err);
+  //       setErr(err);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   }
+  //   loadVans();
+  // }, []);
+  
   useEffect(() => {
     setActivebuttons({
       type1: type.get("type1") ? true : false,
@@ -63,7 +68,7 @@ export default function VansBody() {
             className="no-decoration black-color hover"
           >
             <VanCard
-            key={van.id}
+              key={van.id}
               id={van.id}
               img={van.imageUrl}
               vanName={van.name}
