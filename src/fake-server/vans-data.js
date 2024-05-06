@@ -77,7 +77,8 @@ createServer({
   routes() {
     this.urlPrefix = "https://";
     this.logging = false;
-    // this.timing = 2000;
+
+    this.passthrough("http://127.0.0.1:8000/**");
 
     this.get("/vans", (schema, request) => {
       return schema.vans.all();

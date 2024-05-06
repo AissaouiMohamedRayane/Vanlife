@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+
 import menu from "../../assets/menu.svg";
 
-export default function Navbar() {
+export default function Navbar({ setIsPageLoading }) {
   // const [NavLinkStates, setNavLinkStates] = useState({
   //   about: false,
   //   vans: false,
@@ -15,10 +16,19 @@ export default function Navbar() {
     };
     window.addEventListener("resize", handleResize);
 
+    fetch("http://127.0.0.1:8000/api/users")
+    .then(res=>res.json())
+    .then(data=>console.log(data))
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleVansClick = () => {
+    setIsPageLoading(true);
+  };
+
   // function handleNavLinkToggle(NavLink) {
   //   setNavLinkStates((prev) => {
   //     const updatedStates = {};
@@ -116,6 +126,7 @@ export default function Navbar() {
                   }`
             }
             to="vans"
+            onClick={() => handleVansClick()}
           >
             Vans
           </NavLink>

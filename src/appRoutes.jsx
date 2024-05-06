@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Layout from "./layout";
 import App from "./Routes/landing-page.jsx";
 import About from "./Routes/About.jsx";
@@ -18,6 +18,9 @@ import VanDetailLayout from "./Routes/vans-detail-layout.jsx";
 import Pricing from "./componentes/host/details/pricing.jsx";
 import Photos from "./componentes/host/details/Photos.jsx";
 
+import Login from "./Routes/login.jsx";
+import AuthRequired from "./componentes/AuthRequired.jsx";
+
 const hostRoutes = (
   <>
     <Route index element={<Dashboard />} />
@@ -31,16 +34,16 @@ const hostRoutes = (
     <Route path="reviews" element={<Reviews />} />
   </>
 );
-const errorRoutes = (
-  <Route
-    path="*"
-    element={<h1 className="grow layout-margin">Page not found</h1>}
-  />
-);
 
+const protectedRoutes = (
+  <Route path="host" element={<Host />}>
+    {hostRoutes}
+  </Route>
+);
 const layoutRoutes = (
   <>
     <Route index element={<App />} />
+    <Route path="login" element={<Login />} />
     <Route path="about" element={<About />} />
     <Route
       path="vans"
@@ -48,17 +51,17 @@ const layoutRoutes = (
       errorElement={<VansErrour />}
       loader={vansLoader}
     />
-
     <Route path="vans/:id" element={<VanDetailLayout host={false} />}>
       <Route index element={<VanDetail />} />
     </Route>
-    {errorRoutes}
-
-    <Route path="host" element={<Host />}>
-      {hostRoutes}
-    </Route>
+    <Route
+      path="*"
+      element={<h1 className="grow layout-margin">Page not found</h1>}
+    />{" "}
+    <Route element={<AuthRequired />}>{protectedRoutes}</Route>
   </>
 );
+
 const AppRoutes = () => {
   return (
     <Route path="/" element={<Layout />}>

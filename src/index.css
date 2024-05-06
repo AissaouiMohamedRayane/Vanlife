@@ -23,6 +23,10 @@ html {
   margin: 0 25px 25px;
 }
 
+.mr-l-0 {
+  margin-left: 0;
+}
+
 .mr-b-5 {
   margin-bottom: 5px;
 }
@@ -94,9 +98,6 @@ html {
   align-items: end;
 }
 
-.item-start {
-  align-items: start;
-}
 
 .flex-column {
   display: flex;
@@ -128,6 +129,12 @@ html {
   align-items: center;
   justify-content: space-between;
 }
+
+.item-start {
+  align-items: start;
+}
+
+
 
 .nogap {
 
@@ -206,6 +213,7 @@ html {
   color: black;
   text-decoration: underline;
 }
+
 .underline--mobile {
   font-size: 1.2rem;
   font-weight: 400;
@@ -228,6 +236,7 @@ html {
 .scale:hover {
   transform: scale(1.1);
 }
+
 .scale-5 {
   transition: transform .1s ease-in-out;
 }
@@ -240,7 +249,29 @@ html {
   display: none;
 }
 
+.display-block {
+  display: block;
+  width: 100%;
+}
+
 /*End utility classes*/
+
+/*Animation*/
+@keyframes loader {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 70%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/*End animation*/
 body::-webkit-scrollbar {
   display: none;
 }
@@ -250,6 +281,34 @@ body::-webkit-scrollbar {
   flex-flow: column nowrap;
   background-color: #FFF7ED;
   min-height: 100vh;
+}
+
+.form-input {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  border: #D1D5DB solid 1px;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  border: none;
+  border-radius: 2px;
+  animation: loader 13s .5s ease-out 1 forwards;
+
+}
+
+.login-form-h1 {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.login-image {
+  width: clamp(200px, 45%, 1000px)
 }
 
 .nav {

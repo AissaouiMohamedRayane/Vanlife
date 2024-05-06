@@ -1,5 +1,4 @@
 import VanCard from "./../componentes/vans-page/van-card";
-import "../fake-server/vans-data";
 import { useState, useEffect } from "react";
 import { useSearchParams, Link, useLoaderData } from "react-router-dom";
 import getVans from "../API/getVans";
@@ -17,9 +16,9 @@ export default function VansBody() {
     type2: type.get("type2") ? true : false,
     type3: type.get("type3") ? true : false,
   });
+  const vans = useLoaderData();
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(null);
-  const vans = useLoaderData();
   // useEffect(() => {
   //   async function loadVans() {
   //     setLoading(true);
