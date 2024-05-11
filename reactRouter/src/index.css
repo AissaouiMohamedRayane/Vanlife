@@ -421,17 +421,16 @@ body::-webkit-scrollbar {
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  padding: 1rem 2rem;
   gap: 30px;
 }
 
 .image_h1 {
-  font-size: clamp(1rem, 7vw, 5rem);
+  font-size: clamp(2.5rem, 7vw, 5rem);
   color: white;
 }
 
 .image_text {
-  font-size: clamp(.5rem, 3vw, 2rem);
+  font-size: clamp(1rem, 5vw, 2rem);
   color: white;
 }
 
@@ -440,7 +439,7 @@ body::-webkit-scrollbar {
   width: 100%;
   padding: 1rem 2rem;
   border: none;
-  font-size: clamp(.5rem, 3vw, 1.5rem);
+  font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 600;
   border-radius: 10px;
 }

@@ -1,11 +1,31 @@
 import backImage from "../../assets/image.png";
 import Button from "../../utility-componentes/button";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 export default function Body() {
+    const [navWidth, setNavWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setNavWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
-    <figure className="image_container">
+    <figure
+      className={`image_container`}
+    >
       <img className="back_image" src={backImage} alt="image" />
-      <figcaption className="image_caption ">
+      <figcaption className={`image_caption ${
+        navWidth > 580
+          ? "layout-padding "
+          : navWidth > 335
+          ? "layout-padding-mobile"
+          : "layout-padding-mobile--s"
+      }`}>
         <h1 className="image_h1">
           You got the travel plans, we got the travel vans.
         </h1>
