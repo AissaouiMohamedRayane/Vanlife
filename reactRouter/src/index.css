@@ -1,0 +1,754 @@
+/*Reset*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+
+html {
+  font-family: sans-serif;
+}
+
+
+/*End reset*/
+
+/*Utility classes*/
+
+.layout-margin {
+  margin: 50px;
+}
+
+.layout-margin--mobile {
+  margin: 0 25px 25px;
+}
+
+.mr-l-0 {
+  margin-left: 0;
+}
+
+.mr-b-5 {
+  margin-bottom: 5px;
+}
+
+.mr-b-20 {
+  margin-bottom: 20px;
+}
+
+.mr-b-30 {
+  margin-bottom: 30px;
+}
+
+.mr-l-40 {
+  margin-left: 40px;
+}
+
+.mr-t-20 {
+  margin-top: 20px;
+}
+
+.mr-r-20 {
+  margin-right: 20px;
+}
+
+.layout-padding {
+  padding: 25px 50px;
+}
+
+.layout-padding-mobile {
+  padding: 25px;
+}
+
+.layout-padding-mobile--s {
+  padding: 10px;
+}
+
+.pd-l--5 {
+  padding-left: .5rem;
+}
+
+.pd-l-2 {
+  padding-left: 2rem;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+.relative {
+  position: relative;
+}
+
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.nowrap {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.trn--5 {
+  transform: translatey(-5px);
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.end {
+  align-items: end;
+}
+
+
+.flex-column {
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 10px
+}
+
+.center {
+  align-items: center;
+}
+
+.center-position-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px
+}
+
+.flex-spacebetween {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-start {
+  align-items: start;
+}
+
+
+
+.nogap {
+
+  gap: 0;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}
+
+.gap-40 {
+  gap: 40px;
+}
+
+.gap-50 {
+  gap: 50px;
+}
+
+.gap-60 {
+  gap: 60px;
+}
+
+.light-orange-background {
+  background-color: #FFEAD0;
+}
+
+.orange-background {
+  background-color: #FF8C38;
+}
+
+.dark-orange-background {
+  background-color: #E17654;
+}
+
+.green-background {
+  background-color: #115E59;
+}
+
+.black-background {
+  background-color: #161616;
+}
+
+.greay-color {
+  color: #4D4D4D;
+}
+
+.white-color {
+  color: white;
+}
+
+.black-color {
+  color: #161616;
+}
+
+.no-decoration {
+  text-decoration: none;
+}
+
+
+
+.underline {
+  font-size: 1.6rem;
+  font-weight: 545;
+  color: black;
+  text-decoration: underline;
+}
+
+.underline--mobile {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: black;
+  text-decoration: underline;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.scale {
+  transition: transform .1s ease-in-out;
+}
+
+.scale:hover {
+  transform: scale(1.1);
+}
+
+.scale-5 {
+  transition: transform .1s ease-in-out;
+}
+
+.scale-5:hover {
+  transform: scale(1.05);
+}
+
+.display-none {
+  display: none;
+}
+
+.display-block {
+  display: block;
+  width: 100%;
+}
+
+/*End utility classes*/
+
+/*Animation*/
+@keyframes loader {
+  0% {
+    width: 0;
+  }
+
+  20% {
+    width: 70%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+/*End animation*/
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: #FFF7ED;
+  min-height: 100vh;
+}
+
+.form-input {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  border: #D1D5DB solid 1px;
+}
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  border: none;
+  border-radius: 2px;
+  animation: loader 13s .2s ease-out 1 forwards;
+
+}
+
+.login-form-h1 {
+  font-size: 4rem;
+  font-weight: 600;
+}
+
+.login-image {
+  width: clamp(200px, 45%, 1000px)
+}
+
+.nav {
+  height: minmax(50px, 100px);
+}
+
+.nav--mobile {
+  height: 50px;
+}
+
+.logo {
+  font-family: sans-serif;
+  font-size: clamp(1.3rem, 5vw, 2.2rem);
+  font-weight: 800;
+}
+
+.logo--mobile {
+  font-family: sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+}
+
+.logo--mobile--S {
+  font-family: sans-serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.logo:any-link {
+  color: black;
+  text-decoration: none;
+}
+
+.logo--mobile:any-link {
+  color: black;
+  text-decoration: none;
+}
+
+
+.logo--mobile--S:any-link {
+  color: black;
+  text-decoration: none;
+}
+
+.nav_link {
+  font-size: clamp(1rem, 2vw, 1.6rem);
+  font-weight: 545;
+  color: #4D4D4D;
+}
+
+.nav_link--mobile {
+  font-size: 1.2rem;
+  font-weight: 100;
+  color: #4D4D4D;
+}
+
+.nav_link--mobile--S {
+  font-size: 1rem;
+  font-weight: 100;
+  color: #4D4D4D;
+}
+
+
+.no-decoration_link:any-link {
+  text-decoration: none;
+}
+
+.nav_link:hover {
+  filter: brightness(170%);
+}
+
+.nav-absulote {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.image_container {
+  flex-grow: 1;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.image_container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: #00000046;
+
+}
+
+.back_image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image_caption {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  padding: 1rem 2rem;
+  gap: 30px;
+}
+
+.image_h1 {
+  font-size: clamp(1rem, 7vw, 5rem);
+  color: white;
+}
+
+.image_text {
+  font-size: clamp(.5rem, 3vw, 2rem);
+  color: white;
+}
+
+.button {
+  font-family: "Inter", sans-serif;
+  width: 100%;
+  padding: 1rem 2rem;
+  border: none;
+  font-size: clamp(.5rem, 3vw, 1.5rem);
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #252525;
+}
+
+.footer_text {
+  color: #AAAAAA;
+  font-size: clamp(1rem, 4vw, 2.2rem);
+  font-weight: 300;
+}
+
+.about-main {
+  margin: 5rem 2rem;
+}
+
+.about-hero-image img {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+}
+
+.about-h1 {
+  font-size: 3.5rem;
+}
+
+.about-card {
+  background-color: #FFCC8D;
+  border-radius: 14px;
+  padding: 3rem;
+}
+
+.about-h2 {
+  width: 50%;
+  font-size: 3rem;
+}
+
+.about-text {
+  display: block;
+  font-size: 2rem;
+}
+
+.about-card-button {
+  width: 25%;
+  margin-top: 3rem;
+}
+
+.vans {
+  display: flex;
+  flex-direction: column;
+}
+
+.vans-main {
+  margin: 5rem 2rem;
+}
+
+.vans-h1 {
+  font-size: 3rem;
+  margin-bottom: 30px;
+}
+
+.vans-list {
+  list-style: none;
+  gap: 50px;
+}
+
+.vans-list-element {
+  padding: 1rem 4rem;
+  border-radius: 7px;
+  font-size: 1.5rem;
+}
+
+.clear-filter {
+  color: #4D4D4D;
+  font-size: 1.5rem;
+  text-decoration: underline;
+}
+
+.clear-filter:hover {
+  filter: brightness(1.2);
+}
+
+.van-card {
+  max-width: 500px;
+  transition: transform .1s ease-in-out;
+}
+
+.van-card:hover {
+  transform: scale(1.01);
+}
+
+.van-card img {
+  width: 100%;
+  max-height: 450px;
+  border-radius: 10px;
+}
+
+.van-card-button {
+  width: 40%;
+}
+
+.price-container {
+  position: relative;
+}
+
+.price {
+  font-size: 2rem;
+}
+
+.price-time {
+  position: absolute;
+  font-size: 1.4rem;
+  font-weight: 100;
+  top: 100;
+  right: 0;
+}
+
+.vans-grid {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 80px;
+  justify-items: center;
+}
+
+
+.van-detail-caption {
+  flex: 1;
+  overflow: hidden;
+}
+
+.arrow {
+  margin-top: 5px;
+  width: 22px;
+  height: auto;
+}
+
+.van-detail-link:any-link {
+  color: #201F1D;
+  font-size: 1.5rem;
+}
+
+.van-detail-link--mobile:any-link {
+  color: #201F1D;
+  font-size: 1.1rem;
+}
+
+.van-detail-img-container {
+  margin-top: 50px;
+}
+
+.van-detail-img-container img {
+  width: clamp(300px, 40%, 800px);
+  height: auto;
+  border-radius: 10px;
+}
+
+.van-detail-button {
+  width: clamp(200px, 40%, 500px);
+}
+
+.van-detail-button--mobile {
+  border-radius: 5px;
+  width: 100%
+}
+
+.van-detail-button-font-size--XL {
+  font-size: 1.1rem;
+}
+
+.van-detail-h1--XLL {
+  text-align: end;
+  font-size: 2.5rem;
+}
+
+.van-detail-h1--XL {
+  font-size: 2rem;
+}
+
+.van-detail-h1--mobile {
+  font-size: 1.5rem;
+}
+
+.van-detail-h2--XLL {
+  font-weight: 100;
+}
+
+.van-detail-h2--XL {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+
+.bold--XLL {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.bold--XL {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+.van-detail-descreption--XLL {
+  font-size: 2.1rem;
+  font-weight: 500;
+  line-height: 3rem;
+}
+
+.van-detail-descreption--XL {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.van-detail-descreption--L {
+  font-size: 1.5rem;
+  font-weight: 200;
+}
+
+.van-detail-descreption--M {
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+
+.dashboard-welcome {
+  background-color: #FFEAD0;
+}
+
+.dashboard-welcome-h1 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.dashboard-welcome-p {
+  font-size: 1.2rem;
+  color: #4D4D4D;
+}
+
+.dashboard-welcome-p span {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.dashboard-detail {
+  font-size: 1.2rem;
+  color: black;
+}
+
+.dashboard-welocome-number {
+  font-size: 4rem;
+  font-weight: 800;
+}
+
+.dashboard-review {
+  background-color: #FFDDB2;
+}
+
+.dashboard-review-h2 {
+  font-size: 2.7rem;
+  font-weight: 700;
+}
+
+.star {
+  width: 30px;
+  height: auto;
+}
+
+.dashboard-review-h6 {
+  font-size: 2rem;
+  font-weight: 200;
+  color: #4D4D4D;
+}
+
+.dashboard-review-h6 span {
+  color: black;
+  font-weight: 700;
+}
+
+.Your-listed-vans {
+  font-size: 2.7rem;
+  font-weight: 700;
+}
+
+.van-list-card {
+  margin: 3rem 0;
+  padding: 1.5rem 2rem;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.van-list-img {
+  width: 150px;
+  height: auto;
+  border-radius: 7px;
+}
+
+.van-list-vanname {
+  color: black;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.van-list-price {
+  font-size: 1.5rem;
+  font-weight: 100;
+  color: #4D4D4D;
+}
