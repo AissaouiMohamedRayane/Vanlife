@@ -7,9 +7,8 @@ from django.db import IntegrityError
 from django.views.decorators.csrf import csrf_exempt
 
 
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 
-# Create your views here.
 def get_users(request):
     users = NewUser.objects.all()
     serialized_user = CustomersSerializer(users, many = True)
@@ -23,10 +22,9 @@ def login_view(request):
         password = data.get('password')
         user = authenticate(request, email=email, password=password)
 
-        # Check if authentication successful
         if user is not None:
-            login(request, user)
-            return JsonResponse({"res" : True}, status=200)
+            response = JsonResponse({"res" : True}, status=200)
+            return response
         else:
             return JsonResponse({"res" : False}, status=300)
     else:
