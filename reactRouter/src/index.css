@@ -225,6 +225,10 @@ html {
   text-decoration: underline;
 }
 
+.g {
+  background-color: #115E59;
+}
+
 .grow {
   flex-grow: 1;
 }
