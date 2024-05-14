@@ -1,7 +1,14 @@
 from django.urls import path
 from . import views
 
+
 urlpatterns = [
-    path('api/users', views.get_users, name='users'),
-    path('api/login', views.login_view, name='login'),
+    path('login', views.login_view, name='login'),
+    path('register', views.logout_view, name='logout'),
+    path('logout', views.register, name='register'),
+    path('vans', views.get_all_vans, name='vans'),
+    path('host/my_vans', views.get_my_vans, name='my_vans'),
+    path('host/add_van', views.add_van, name='add_vans'),
+    path('host/delete_van', views.delete_van, name='delete_vans'),
+    path('host/modify_van', views.modify_van, name='modify_vans'),
 ]

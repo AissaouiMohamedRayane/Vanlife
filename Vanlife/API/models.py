@@ -25,8 +25,6 @@ class CustomAccountManager (BaseUserManager):
 class NewUser (AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), max_length=100, unique=True)
     user_name = models.CharField(_("username"), max_length=50, unique=True)
-    first_name = models.CharField(_("first name"), max_length=50, blank= True)
-    test = models.CharField(_("test"), max_length=50, blank= True)
     date_joined = models.DateField(default=timezone.now)
     
     is_active = models.BooleanField(default=True)
@@ -39,3 +37,21 @@ class NewUser (AbstractBaseUser, PermissionsMixin):
     
     def __str__(self):
         return f"{self.user_name}"
+    
+class Van (models.Model):
+    TYPE_CHOICES = [
+        ('simple', 'Simple'),
+        ('rugged', 'Rugged'),
+        ('luxury', 'Luxury'),
+    ]
+    user = models.ForeignKey( NewUser, on_delete=models.CASCADE)
+    name = models.CharField(_("van name"), max_length=50, unique=True)
+    price = models.FloatField(_("van price"))
+    image = models.ImageField(_("van image"), upload_to="images/", height_field=None, width_field=None, max_length=None, blank=True, default="images/van.png")
+    type = models.CharField(_("van type"), max_length=20, choices=TYPE_CHOICES)
+    description = models.CharField(_("van description"), max_length=200, blank=True, default="vans description")
+    date_added = models.DateField(default=timezone.now)
+
+    
+    def __str__(self) -> str:
+        return f"{self.user.user_name} : {self.name} {self.type} {self.price}$"
