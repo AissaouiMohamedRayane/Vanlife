@@ -1,68 +1,50 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { WidthContext } from "../Layout/layout";
 
 import menu from "../assets/menu.svg";
 
-export default function Navbar({ setIsPageLoading }) {
-  const [navWidth, setNavWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setNavWidth(window.innerWidth);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  const handleVansClick = () => {
-    setIsPageLoading(true);
-  };
-
+export default function Navbar() {
+  const screenWidth = useContext(WidthContext);
 
   return (
     <nav
       className={`flex-spacebetween nav ${
-        navWidth > 580 ? "layout-padding " : navWidth > 335 ? 'layout-padding-mobile' : 'layout-padding-mobile--s'
+        screenWidth > 580
+          ? "layout-padding "
+          : screenWidth > 335
+          ? "layout-padding-mobile"
+          : "layout-padding-mobile--s"
       }`}
     >
-      <NavLink
-        className={
-          "logo"
-        }
-        to=""
-      >
+      <NavLink className={"logo"} to="">
         #VANLIF
       </NavLink>
-      <div className={`nav-container ${navWidth > 335 ? "" : "display-none"}`}>
+      <div className={`nav-container ${screenWidth > 335 ? "" : "display-none"}`}>
         <div
           className={`flex ${
-            navWidth <= 680 ? (navWidth <= 415 ? "gap-20" : "gap-30") : "gap-50"
+            screenWidth <= 680 ? (screenWidth <= 415 ? "gap-20" : "gap-30") : "gap-50"
           }`}
         >
           <NavLink
-            className={
-              ({ isActive }) =>
-                isActive ? " underline nav_link" : "no-decoration_link nav_link"
+            className={({ isActive }) =>
+              isActive ? " underline nav_link" : "no-decoration_link nav_link"
             }
             to="host"
           >
             Host
           </NavLink>
           <NavLink
-            className={
-              ({ isActive }) =>
-                isActive ? "underline nav_link" : "no-decoration_link nav_link"
+            className={({ isActive }) =>
+              isActive ? "underline nav_link" : "no-decoration_link nav_link"
             }
             to="about"
           >
             About
           </NavLink>
           <NavLink
-            className={
-              ({ isActive }) =>
-                isActive ? "underline nav_link" : "no-decoration_link nav_link"
+            className={({ isActive }) =>
+              isActive ? "underline nav_link" : "no-decoration_link nav_link"
             }
             to="vans"
             onClick={() => handleVansClick()}
@@ -73,7 +55,7 @@ export default function Navbar({ setIsPageLoading }) {
       </div>
       <img
         src={menu}
-        className={` ${navWidth > 335 ? "display-none" : ""}`}
+        className={` ${screenWidth > 335 ? "display-none" : ""}`}
         alt=""
       />
     </nav>

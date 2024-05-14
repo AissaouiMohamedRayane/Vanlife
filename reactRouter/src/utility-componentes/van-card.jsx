@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Button from "./button";
 export default function VanCard(props) {
+  console.log(props.type);
   const [background, setBackground] = useState(null);
   useEffect(() => {
     if (props.type === "simple") {
@@ -12,10 +13,12 @@ export default function VanCard(props) {
     }
   }, []);
 
+  const imageUrl = `http://127.0.0.1:8000${props.img}`;
+
   return (
     <>
       <figure className="van-card">
-        <img src={props.img} alt="image" />
+        <img src={imageUrl} alt="image" />
         <figcaption className="vans-card-text flex-column">
           <div className="flex-spacebetween">
             <h1 className="van-card-h1">{props.vanName}</h1>

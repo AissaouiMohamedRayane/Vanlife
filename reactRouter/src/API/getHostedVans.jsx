@@ -1,5 +1,5 @@
 export default async function getHostedVans() {
-  const res = await fetch("https://host/vans");
+  const res = await fetch("http://127.0.0.1:8000//api/host/my_vans");
   if (!res.ok) {
     throw {
       message: "failed to fetch Vans",

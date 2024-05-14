@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import image from "../../assets/image2.png";
 import Button from "../../utility-componentes/button";
+import { useState, useContext } from "react";
+import { WidthContext } from "../../Layout/layout";
 export default function Body() {
+  const screenWidth = useContext(WidthContext);
+
   return (
     <div className="grow">
       <figure className="about-hero-image">
@@ -22,7 +26,15 @@ export default function Body() {
             of touring the world on 4 wheels.
           </p>
         </div>
-        <div className="about-card">
+        <div
+          className={`about-card ${
+            screenWidth > 580
+              ? "layout-padding "
+              : screenWidth > 335
+              ? "layout-padding-mobile"
+              : "layout-padding-mobile--s"
+          }`}
+        >
           <h2 className="about-h2">
             <span className="nowrap">Your destination is waiting.</span>
             <br />

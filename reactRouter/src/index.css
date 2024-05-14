@@ -465,21 +465,20 @@ body::-webkit-scrollbar {
   display: block;
   width: 100%;
   max-height: 60vh;
+  object-fit: fill;
 }
 
 .about-h1 {
-  font-size: 3.5rem;
+  font-size: clamp(2rem, 7vw, 3.5rem);
 }
 
 .about-card {
   background-color: #FFCC8D;
   border-radius: 14px;
-  padding: 3rem;
 }
 
 .about-h2 {
-  width: 50%;
-  font-size: 3rem;
+  font-size: clamp(1.5rem, 5vw, 3rem);
 }
 
 .about-text {

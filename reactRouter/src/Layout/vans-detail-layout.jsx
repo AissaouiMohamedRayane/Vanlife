@@ -87,7 +87,7 @@ export default function VanDetailLayout(props) {
 
   useEffect(() => {
     const vans = state.vans ? state.vans : state;
-    const foundVan = Object.values(vans).find((van) => van.id === vanId);
+    const foundVan = Object.values(vans).find((van) => vanId === `${van.id}`);
     if (foundVan) {
       setVan(foundVan);
     }
@@ -174,7 +174,7 @@ export default function VanDetailLayout(props) {
           } item-start gap-50`}
         >
           <img
-            src={van.imageUrl}
+            src={`http://127.0.0.1:8000${van.image}`}
             className={windowWidth < 990 ? "full-width" : ""}
             ref={imageRef}
             onLoad={image}

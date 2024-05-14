@@ -1,7 +1,8 @@
 import Button from "../../utility-componentes/button";
 import vanImage from "../../assets/van.png";
-import {  useState } from "react";
+import { useState } from "react";
 import login from "../../API/login";
+import Cookies from "js-cookie";
 import { Navigate } from "react-router-dom";
 export default function Login({ setIsLoggedIn }) {
   const [formData, setFormData] = useState({
@@ -25,9 +26,9 @@ export default function Login({ setIsLoggedIn }) {
     event.preventDefault();
     try {
       const res = await login(formData);
-      console.log(res);
       setIsLoggedIn(res);
       if (res) {
+        Cookies.set("loggedInUser", formData.email, { expires: 7 });
         setNavigate(true);
       }
     } catch (error) {

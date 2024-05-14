@@ -59,17 +59,17 @@ export default function VansBody() {
   }, [vans, type]);
   const mapedVans = filterdVans
     ? filterdVans.map((van) => {
+        console.log(van.type);
         return (
           <Link
-            to={van.id}
             key={van.id}
+            to={`${van.id}`}
             state={{ activeButtons: activeButtons, vans: vans }}
             className="no-decoration black-color hover"
           >
             <VanCard
-              key={van.id}
               id={van.id}
-              img={van.imageUrl}
+              img={van.image}
               vanName={van.name}
               price={van.price}
               type={van.type}
