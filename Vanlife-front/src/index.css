@@ -19,8 +19,13 @@ html {
   margin: 50px;
 }
 
-.layout-margin--mobile {
-  margin: 0 25px 25px;
+.layout-margin-mobile {
+  margin: 25px;
+}
+
+
+.layout-margin-mobile--s {
+  margin: 10px;
 }
 
 .mr-l-0 {
@@ -59,8 +64,16 @@ html {
   padding: 25px;
 }
 
+.layout-padding-mobile--m {
+  padding: 17px;
+}
+
 .layout-padding-mobile--s {
   padding: 10px;
+}
+
+.button-padding {
+  padding: 1rem 2rem;
 }
 
 .pd-l--5 {
@@ -69,6 +82,22 @@ html {
 
 .pd-l-2 {
   padding-left: 2rem;
+}
+
+.width-25 {
+  width: 25%;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.width-75 {
+  width: 75%;
+}
+
+.fit-content {
+  width: fit-content !important;
 }
 
 .full-width {
@@ -113,12 +142,15 @@ html {
   align-items: center;
 }
 
+.justify-spaceevenly {
+  justify-content: space-evenly;
+}
+
 .center-position-absolute {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
 }
 
 .flex-center {
@@ -138,7 +170,9 @@ html {
   align-items: start;
 }
 
-
+.gap-auto {
+  gap: auto;
+}
 
 .nogap {
 
@@ -172,6 +206,12 @@ html {
 .gap-60 {
   gap: 60px;
 }
+
+.gap-80 {
+  gap: 80px;
+}
+
+
 
 .light-orange-background {
   background-color: #FFEAD0;
@@ -441,7 +481,6 @@ body::-webkit-scrollbar {
 .button {
   font-family: "Inter", sans-serif;
   width: 100%;
-  padding: 1rem 2rem;
   border: none;
   font-size: clamp(1.2rem, 3vw, 1.5rem);
   font-weight: 600;
@@ -461,10 +500,6 @@ body::-webkit-scrollbar {
   font-weight: 300;
 }
 
-.about-main {
-  margin: 5rem 2rem;
-}
-
 .about-hero-image img {
   display: block;
   width: 100%;
@@ -473,7 +508,7 @@ body::-webkit-scrollbar {
 }
 
 .about-h1 {
-  font-size: clamp(2rem, 7vw, 3.5rem);
+  font-size: clamp(1.5rem, 7vw, 3.5rem);
 }
 
 .about-card {
@@ -482,26 +517,21 @@ body::-webkit-scrollbar {
 }
 
 .about-h2 {
-  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-size: clamp(.9rem, 5vw, 3rem);
+}
+
+.about-card-button {
+  font-size: clamp(.8rem, 3vw, 1.5rem);
 }
 
 .about-text {
   display: block;
-  font-size: 2rem;
-}
-
-.about-card-button {
-  width: 25%;
-  margin-top: 3rem;
+  font-size: clamp(.8rem, 5vw, 2rem);
 }
 
 .vans {
   display: flex;
   flex-direction: column;
-}
-
-.vans-main {
-  margin: 5rem 2rem;
 }
 
 .vans-h1 {
@@ -535,6 +565,15 @@ body::-webkit-scrollbar {
   transition: transform .1s ease-in-out;
 }
 
+.van-card-button-padding--mobile {
+  padding: .7rem 1.2rem;
+  border-radius: 7px;
+}
+
+.van-card-text {
+  font-size: clamp(1rem, 8vw, 2rem);
+}
+
 .van-card:hover {
   transform: scale(1.01);
 }
@@ -546,20 +585,16 @@ body::-webkit-scrollbar {
 }
 
 .van-card-button {
-  width: 40%;
+  font-size: clamp(1rem, 5vw, 1.5rem);
 }
 
 .price-container {
   position: relative;
 }
 
-.price {
-  font-size: 2rem;
-}
-
 .price-time {
   position: absolute;
-  font-size: 1.4rem;
+  font-size: clamp(.7rem, 6vw, 1.4rem);
   font-weight: 100;
   top: 100;
   right: 0;
@@ -569,6 +604,22 @@ body::-webkit-scrollbar {
   margin: 4rem 0;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(22rem, 1fr));
+  gap: 80px;
+  justify-items: center;
+}
+
+.vans-grid--m {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 80px;
+  justify-items: center;
+}
+
+.vans-grid--mobile {
+  margin: 4rem 0;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 80px;
   justify-items: center;
 }

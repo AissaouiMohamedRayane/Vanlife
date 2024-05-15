@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Button from "./button";
+
 export default function VanCard(props) {
   console.log(props.type);
   const [background, setBackground] = useState(null);
@@ -21,9 +22,9 @@ export default function VanCard(props) {
         <img src={imageUrl} alt="image" />
         <figcaption className="vans-card-text flex-column">
           <div className="flex-spacebetween">
-            <h1 className="van-card-h1">{props.vanName}</h1>
+            <h1 className="van-card-text nowrap">{props.vanName}</h1>
             <div className="price-container">
-              <h1 className="price">${props.price}</h1>
+              <h1 className="price van-card-text">${props.price}</h1>
               <h6 className="price-time">/day</h6>
             </div>
           </div>
@@ -31,7 +32,8 @@ export default function VanCard(props) {
             text={props.type}
             color="white-color"
             background={background}
-            buttonClasses="van-card-button hover"
+            padding={true}
+            buttonClasses="hover fit-content van-card-button"
           />
         </figcaption>
       </figure>

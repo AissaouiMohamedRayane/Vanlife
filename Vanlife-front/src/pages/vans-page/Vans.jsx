@@ -1,5 +1,6 @@
 import VanCard from "../../utility-componentes/van-card";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { WidthContext } from "../../Layout/layout";
 import { useSearchParams, Link, useLoaderData } from "react-router-dom";
 import getVans from "../../API/getVans";
 
@@ -8,6 +9,7 @@ export function loader() {
 }
 
 export default function VansBody() {
+  const screenWidth = useContext(WidthContext);
   const [type, setType] = useSearchParams();
   // const [vans, setVans] = useState([]);
   const [filterdVans, setFilterdVans] = useState(["sad"]);
@@ -103,7 +105,15 @@ export default function VansBody() {
     });
   }
   return (
-    <main className="vans-main">
+    <main
+      className={`vans-main layout-margin ${
+        screenWidth > 580
+          ? "layout-margin "
+          : screenWidth > 335
+          ? "layout-margin-mobile"
+          : "layout-margin-mobile--s"
+      }`}
+    >
       <h1 className="vans-h1">Explore our van options</h1>
       <ul className="flex vans-list flex-wrap">
         <li
@@ -140,7 +150,7 @@ export default function VansBody() {
           Clear filter
         </span>
       </ul>
-      <div className="vans-grid">
+      <div className={screenWidth > 500 ? "vans-grid " : "vans-grid--mobile"}>
         {loading ? (
           <>
             <h1 className="grow">loading...</h1>

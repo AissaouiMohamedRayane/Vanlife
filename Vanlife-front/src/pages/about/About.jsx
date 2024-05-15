@@ -1,21 +1,31 @@
 import { Link } from "react-router-dom";
 import image from "../../assets/image2.png";
 import Button from "../../utility-componentes/button";
-import { useState, useContext } from "react";
+import {  useContext } from "react";
 import { WidthContext } from "../../Layout/layout";
 export default function Body() {
   const screenWidth = useContext(WidthContext);
 
   return (
-    <div className="grow">
+    <div className="grow flex-column nogap">
       <figure className="about-hero-image">
         <img src={image} alt="image" />
       </figure>
-      <main className="gap-60 about-main flex-column">
+      <main
+        className={`flex-column grow justify-spaceevenly ${
+          screenWidth > 580
+            ? "layout-margin "
+            : screenWidth > 335
+            ? "layout-margin-mobile"
+            : "layout-margin-mobile--s"
+        }`}
+      >
         <h1 className="about-h1">
           Don’t squeeze in a sedan when you could relax in a van.
         </h1>
-        <div className="flex-column gap-20">
+        <div
+          className={`flex-column ${screenWidth > 335 ? "gap-20" : "gap-10"})`}
+        >
           <p className="about-text">
             Our mission is to enliven your road trip with the perfect travel van
             rental. Our vans are recertified before each trip to ensure your
@@ -27,12 +37,12 @@ export default function Body() {
           </p>
         </div>
         <div
-          className={`about-card ${
+          className={`about-card flex-column ${
             screenWidth > 580
-              ? "layout-padding "
+              ? "layout-padding gap-60"
               : screenWidth > 335
-              ? "layout-padding-mobile"
-              : "layout-padding-mobile--s"
+              ? "layout-padding-mobile gap-20"
+              : "layout-padding-mobile--s gap-10"
           }`}
         >
           <h2 className="about-h2">
@@ -45,7 +55,8 @@ export default function Body() {
               text="Explore our vans"
               background="black-background"
               color="white-color"
-              buttonClasses="about-card-button hover scale"
+              width={true}
+              buttonClasses="about-card-button hover scale nowrap"
             />
           </Link>
         </div>
