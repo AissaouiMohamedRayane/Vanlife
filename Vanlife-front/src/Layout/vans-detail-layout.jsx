@@ -7,7 +7,6 @@ import {
   useLocation,
 } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
-import "../fake-server/vans-data";
 import arrow from "../assets/Arrow1.svg";
 export default function VanDetailLayout(props) {
   const parm = useParams();

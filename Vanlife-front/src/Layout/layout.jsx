@@ -1,8 +1,7 @@
 import Navbar from "../utility-componentes/NavBar";
-import "../fake-server/vans-data";
 import Footer from "../utility-componentes/footer";
 import { Outlet, useLocation } from "react-router-dom";
-import { useState, useEffect, useContext, createContext } from "react";
+import { useState, useEffect, createContext } from "react";
 
 export const WidthContext = createContext();
 

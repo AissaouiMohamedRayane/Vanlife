@@ -1,7 +1,6 @@
 import { useOutletContext, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Button from "./button";
-import "../fake-server/vans-data";
 export default function VanDetail(props) {
   const [van, setVan] = useOutletContext();
   const [background, setBackground] = useState({});

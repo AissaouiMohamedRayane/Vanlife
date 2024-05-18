@@ -1,11 +1,14 @@
 import VanListCard from "../../utility-componentes/van-list-card";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Cookies from "js-cookie";
 import getHostedVans from "../../API/getHostedVans";
 export default function HostVans() {
   const [hostVans, setHostVans] = useState([]);
   const [err, setErr] = useState(null);
   const [loading, setLoading] = useState(false);
+  const csrf = Cookies.get("csrftoken");
+  console.log(csrf);
   useEffect(() => {
     async function loadVans() {
       setLoading(true);
@@ -28,7 +31,7 @@ export default function HostVans() {
         state={hostVans}
         className="no-decoration_link"
       >
-        <VanListCard image={van.imageUrl} name={van.name} price={van.price} />
+        <VanListCard image={van.image} name={van.name} price={van.price} />
       </Link>
     );
   });

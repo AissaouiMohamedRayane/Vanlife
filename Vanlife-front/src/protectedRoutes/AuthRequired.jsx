@@ -4,7 +4,7 @@ import { useState } from "react";
 import Login from "../pages/login/login";
 export default function AuthRequired() {
   const Cooki = Cookies.get("loggedInUser");
-  const csrf = Cookies.get("csrftoken");
+  console.log(Cooki);
   const login = !!Cooki;
   const [isLoggedIn, setIsLoggedIn] = useState(login);
   if (!isLoggedIn) {

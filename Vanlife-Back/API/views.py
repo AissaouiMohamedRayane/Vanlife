@@ -12,7 +12,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,  logout
 
 
-@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         data = loads(request.body)
@@ -56,8 +55,9 @@ def get_all_vans (request):
     serialized_vans = VanSerializer(vans, many = True)
     return JsonResponse({"vans" : serialized_vans.data})
 
-@login_required
+@csrf_exempt
 def get_my_vans (request):
+  
     vans = Van.objects.filter(user = request.user)
     serialized_vans = VanSerializer(vans, many = True)
     return JsonResponse({"vans" : serialized_vans.data})
