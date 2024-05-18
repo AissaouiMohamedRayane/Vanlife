@@ -4,7 +4,7 @@ from .models import NewUser, Van
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = NewUser
-        fields = ["email", "first_name", "password", "id"]
+        fields = "__all__"
         
 class VanSerializer(serializers.ModelSerializer):
     class Meta:

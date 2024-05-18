@@ -4,6 +4,8 @@ from .serializers import UserSerializer, VanSerializer
 from .models import NewUser, Van
 from django.http import JsonResponse
 from django.db import IntegrityError
+from rest_framework.decorators import api_view
+
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import authenticate, login,  logout
 
-
+@csrf_exempt
 def login_view(request):
     if request.method == "POST":
         data = loads(request.body)
@@ -27,11 +29,11 @@ def login_view(request):
             return JsonResponse({"error" : False}, status=400)
     else:
         return JsonResponse({"error" : 'wrong request'}, status=400)
-
-
+    
+@login_required
 def logout_view(request):
     logout(request)
-    return JsonResponse({"res" : "loged out"}, status = 200)
+    return JsonResponse({"res" : True}, status = 200)
 
 @csrf_exempt
 def register(request):
@@ -48,7 +50,21 @@ def register(request):
         return JsonResponse({'error' : f"{e}"}, status = 400)
     login(request, user)
     return JsonResponse({'res' : 'registerd succesfully'}, status = 200)
-        
+
+@api_view(['GET'])
+@login_required
+def get_user_info(request):
+    if request.method!= 'GET':
+        return JsonResponse({'error':'bad requeste'}, status = 400)
+    info = request.query_params.get('info', None)
+    if info:
+        user = [request.user, ]
+        serializer = UserSerializer(user, many = True)
+        serialized_user = serializer.data[0]
+        item = serialized_user[info]
+        return JsonResponse({'userImage' : item}, status = 200)
+    else:
+        return JsonResponse({'error':'there is no field with these name'}, status = 404)        
     
 def get_all_vans (request):
     vans = Van.objects.all()

@@ -25,8 +25,8 @@ class CustomAccountManager (BaseUserManager):
 class NewUser (AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_("email address"), max_length=100, unique=True)
     user_name = models.CharField(_("username"), max_length=50, unique=True)
+    image = models.ImageField(_("user image"), upload_to='images/', height_field=None, width_field=None, max_length=None, blank=True)
     date_joined = models.DateField(default=timezone.now)
-    
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     
