@@ -1,16 +1,15 @@
 import { useContext, useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
-import Cookies from "js-cookie";
 import { WidthContext } from "../Layout/layout";
 import profile from "../assets/profile.svg";
 import getUserInfo from "../API/getUserInfo";
 import { LoginContext } from "../Layout/layout";
-
+import layoutPadding from "../Layout/layout-padding";
 import menu from "../assets/menu.svg";
 
-export default function Navbar() {
+export default function Navbar(props) {
   const screenWidth = useContext(WidthContext);
-
+  const { setProfileClicked } = props;
   const [isLoggedIn] = useContext(LoginContext);
   const [profilePic, setProfilePic] = useState(profile);
   useEffect(() => {
@@ -24,20 +23,20 @@ export default function Navbar() {
         console.log(e);
       }
     }
-    handleInfo();
+    if (isLoggedIn) {
+      handleInfo();
+    }
   }, [isLoggedIn]);
 
+  function handleprofileClick() {
+    if (isLoggedIn) {
+      setProfileClicked((prev) => !prev);
+    }
+  }
+
   return (
-    <nav
-      className={`flex-spacebetween nav ${
-        screenWidth > 580
-          ? "layout-padding "
-          : screenWidth > 335
-          ? "layout-padding-mobile"
-          : "layout-padding-mobile--s"
-      }`}
-    >
-      <NavLink className={"logo"} to="">
+    <nav className={`flex-spacebetween nav ${layoutPadding(screenWidth)}`}>
+      <NavLink className={"logo"} to=''>
         #VANLIF
       </NavLink>
       <div
@@ -56,7 +55,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               isActive ? " underline nav_link" : "no-decoration_link nav_link"
             }
-            to="host"
+            to='host'
           >
             Host
           </NavLink>
@@ -64,7 +63,7 @@ export default function Navbar() {
             className={({ isActive }) =>
               isActive ? "underline nav_link" : "no-decoration_link nav_link"
             }
-            to="about"
+            to='about'
           >
             About
           </NavLink>
@@ -72,28 +71,25 @@ export default function Navbar() {
             className={({ isActive }) =>
               isActive ? "underline nav_link" : "no-decoration_link nav_link"
             }
-            to="vans"
-            onClick={() => handleVansClick()}
+            to='vans'
           >
             Vans
           </NavLink>
           {isLoggedIn && (
-            <NavLink
-              className={({ isActive }) =>
-                isActive ? "underline nav_link" : "no-decoration_link nav_link"
-              }
-              to=""
-              onClick={() => handleVansClick()}
-            >
-              <img src={profilePic} className="profile-pic" alt="" width="50" />
-            </NavLink>
+            <img
+              src={profilePic}
+              onClick={() => handleprofileClick()}
+              className='profile-pic'
+              alt=''
+              width='50'
+            />
           )}
         </div>
       </div>
       <img
         src={menu}
         className={` ${screenWidth > 335 ? "display-none" : ""}`}
-        alt=""
+        alt=''
       />
     </nav>
   );

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import NewUser, Van
+from .models import NewUser, Van, Comment
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,3 +10,8 @@ class VanSerializer(serializers.ModelSerializer):
     class Meta:
         model = Van
         fields ="__all__"
+        
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ["review", "text", "date_added"]

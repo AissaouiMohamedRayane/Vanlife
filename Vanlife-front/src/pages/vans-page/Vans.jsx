@@ -67,7 +67,7 @@ export default function VansBody() {
             key={van.id}
             to={`${van.id}`}
             state={{ activeButtons: activeButtons, vans: vans }}
-            className="no-decoration black-color hover"
+            className='no-decoration black-color hover'
           >
             <VanCard
               id={van.id}
@@ -114,50 +114,94 @@ export default function VansBody() {
           : "layout-margin-mobile--s"
       }`}
     >
-      <h1 className="vans-h1">Explore our van options</h1>
-      <ul className="flex vans-list flex-wrap">
-        <li
-          className={`vans-list-element scale hover ${
-            activeButtons.type1
-              ? "dark-orange-background white-color"
-              : "light-orange-background greay-color"
+      <h1 className='vans-h1'>Explore our van options</h1>
+      <ul
+        className={`flex vans-list flex-wrap ${
+          screenWidth > 400 ? "gap-50" : "gap-20"
+        }`}
+      >
+        <ul
+          className={`flex vans-list ${
+            screenWidth > 400 ? "gap-50" : "gap-20"
           }`}
-          onClick={() => handleTypeClick("type1", "simple")}
         >
-          Simple
-        </li>
-        <li
-          className={`vans-list-element scale hover ${
-            activeButtons.type2
-              ? "black-background white-color"
-              : "light-orange-background greay-color"
+          <li
+            className={`vans-list-element ${
+              screenWidth > 500
+                ? "vans-list-element-pd"
+                : screenWidth > 400
+                ? "vans-list-element-pd--s"
+                : "vans-list-element-pd--ss"
+            } scale hover ${
+              activeButtons.type1
+                ? "dark-orange-background white-color"
+                : "light-orange-background greay-color"
+            }`}
+            onClick={() => handleTypeClick("type1", "simple")}
+          >
+            Simple
+          </li>
+          <li
+            className={`vans-list-element ${
+              screenWidth > 500
+                ? "vans-list-element-pd"
+                : screenWidth > 400
+                ? "vans-list-element-pd--s"
+                : "vans-list-element-pd--ss"
+            } scale hover ${
+              activeButtons.type2
+                ? "black-background white-color"
+                : "light-orange-background greay-color"
+            }`}
+            onClick={() => handleTypeClick("type2", "luxury")}
+          >
+            luxury
+          </li>
+        </ul>
+        <ul
+          className={`flex vans-list ${
+            screenWidth > 400 ? "gap-50" : "gap-20"
           }`}
-          onClick={() => handleTypeClick("type2", "luxury")}
         >
-          luxury
-        </li>
-        <li
-          className={`vans-list-element scale hover ${
-            activeButtons.type3
-              ? "green-background white-color"
-              : "light-orange-background greay-color"
-          }`}
-          onClick={() => handleTypeClick("type3", "rugged")}
-        >
-          Rugged
-        </li>
-        <span className="mr-l-40 clear-filter hover" onClick={clearFilter}>
-          Clear filter
-        </span>
+          <li
+            className={`vans-list-element ${
+              screenWidth > 500
+                ? "vans-list-element-pd"
+                : screenWidth > 400
+                ? "vans-list-element-pd--s"
+                : "vans-list-element-pd--ss"
+            } scale hover ${
+              activeButtons.type3
+                ? "green-background white-color"
+                : "light-orange-background greay-color"
+            }`}
+            onClick={() => handleTypeClick("type3", "rugged")}
+          >
+            Ruged
+          </li>
+
+          <li
+            className={`vans-list-element clear-filter ${
+              screenWidth > 500
+                ? "vans-list-element-pd"
+                : screenWidth > 400
+                ? "vans-list-element-pd--s"
+                : "vans-list-element-pd--ss"
+            } hover`}
+            onClick={clearFilter}
+          >
+            Clear filter
+          </li>
+        </ul>
       </ul>
       <div className={screenWidth > 500 ? "vans-grid " : "vans-grid--mobile"}>
         {loading ? (
           <>
-            <h1 className="grow">loading...</h1>
+            <h1 className='grow'>loading...</h1>
           </>
         ) : err ? (
           <>
-            <h1 className="grow">{err.message}</h1>
+            <h1 className='grow'>{err.message}</h1>
           </>
         ) : (
           mapedVans

@@ -14,12 +14,11 @@ export default function VanCard(props) {
     }
   }, []);
 
-  const imageUrl = `http://127.0.0.1:8000${props.img}`;
 
   return (
     <>
       <figure className="van-card">
-        <img src={imageUrl} alt="image" />
+        <img src={props.img} alt="image" />
         <figcaption className="vans-card-text flex-column">
           <div className="flex-spacebetween">
             <h1 className="van-card-text nowrap">{props.vanName}</h1>

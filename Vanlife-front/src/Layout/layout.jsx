@@ -1,7 +1,8 @@
 import Navbar from "../utility-componentes/NavBar";
 import Footer from "../utility-componentes/footer";
 import { Outlet, useLocation } from "react-router-dom";
-import { useState, useEffect, createContext } from "react";
+import { useState, useEffect, createContext, useContext } from "react";
+import SideBar from "../utility-componentes/SideBar";
 import Cookies from "js-cookie";
 
 export const WidthContext = createContext();
@@ -22,6 +23,7 @@ const LoginProvider = ({ children }) => {
 export default function Layout() {
   const [isPageLoading, setIsPageLoading] = useState(false);
   const location = useLocation();
+  const [profileClicked, setProfileClicked] = useState(false);
   useEffect(() => {
     setIsPageLoading(false);
   }, [location]);
@@ -39,11 +41,12 @@ export default function Layout() {
   }, []);
   return (
     <>
-      {isPageLoading && <div className="loader"></div>}
+      {isPageLoading && <div className='loader'></div>}
       <LoginProvider>
         <WidthContext.Provider value={screenWidth}>
-          <Navbar />
+          <Navbar setProfileClicked={setProfileClicked} />
           <Outlet />
+          {profileClicked && <SideBar />}
           <Footer />
         </WidthContext.Provider>
       </LoginProvider>

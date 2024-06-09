@@ -93,7 +93,7 @@ export default function VanDetailLayout(props) {
   }, []);
 
   const vanDetailNav = (
-    <nav className="van-detail-nav flex gap-30">
+    <nav className='van-detail-nav flex gap-30'>
       <NavLink
         className={({ isActive }) =>
           isActive
@@ -105,7 +105,7 @@ export default function VanDetailLayout(props) {
             : "nav_link no-decoration_link"
         }
         end
-        to=""
+        to=''
       >
         Details
       </NavLink>
@@ -119,7 +119,7 @@ export default function VanDetailLayout(props) {
             ? "nav_link--mobile no-decoration_link"
             : "nav_link no-decoration_link"
         }
-        to="pricing"
+        to='pricing'
       >
         Pricing
       </NavLink>
@@ -133,7 +133,7 @@ export default function VanDetailLayout(props) {
             ? "nav_link--mobile no-decoration_link"
             : "nav_link no-decoration_link"
         }
-        to="photos"
+        to='photos'
       >
         Photos
       </NavLink>
@@ -144,32 +144,36 @@ export default function VanDetailLayout(props) {
     <>
       <div
         className={`van-detail grow ${
-          windowWidth > 580 ? "layout-margin" : "layout-margin--mobile"
+          windowWidth > 580
+            ? "layout-padding "
+            : windowWidth > 360
+            ? "layout-padding-mobile"
+            : "layout-padding-mobile--s"
         }`}
       >
-        <div className="flex van-detail-link-container">
+        <div className='flex van-detail-link-container'>
           <Link
-            to=".."
+            to='..'
             state={location ? location : null}
             onClick={() => (props.host ? null : goBack())}
-            relative="path"
+            relative='path'
             className={`${
               windowWidth > 580 ? "van-detail-link" : "van-detail-link--mobile"
             }`}
           >
-            <span className="mr-r-20">
+            <span className={windowWidth > 380 ? "mr-r-20" : "mr-r-10"}>
               <img
                 className={windowWidth > 580 ? "arrow" : "arrow--mobile"}
                 src={arrow}
-                alt=""
+                alt=''
               />
             </span>
             {returnToVans()}
           </Link>
         </div>
         <figure
-          className={`van-detail-img-container ${
-            windowWidth >= 990 ? "flex" : "flex-column"
+          className={` ${
+            windowWidth >= 990 ? "flex mr-t-50" : "flex-column mr-t-30"
           } item-start gap-50`}
         >
           <img
@@ -177,7 +181,7 @@ export default function VanDetailLayout(props) {
             className={windowWidth < 990 ? "full-width" : ""}
             ref={imageRef}
             onLoad={image}
-            alt="image"
+            alt='image'
           />
           <figcaption
             className={`van-detail-caption flex-column ${

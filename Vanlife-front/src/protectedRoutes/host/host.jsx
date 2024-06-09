@@ -2,25 +2,12 @@ import { NavLink } from "react-router-dom";
 import { Outlet, useOutletContext } from "react-router-dom";
 import Cookies from "js-cookie";
 import logout from "../../API/logout";
+import layoutPadding from "../../Layout/layout-padding";
+import { WidthContext } from "../../Layout/layout";
+import { useContext } from "react";
 export default function Host() {
-  // const [NavLinkStates, setNavLinkStates] = useState({
-  //   dashboard: true,
-  //   income: false,
-  //   vans: false,
-  //   reviews: false,
-  // });
-
-  // function handleNavLinkToggle(NavLink) {
-  //   setNavLinkStates((prev) => {
-  //     const updatedStates = {};
-  //     Object.keys(prev).forEach((key) => {
-  //       updatedStates[key] = key === NavLink;
-  //     });
-  //     return updatedStates;
-  //   });
-  // }
-
   const setLogin = useOutletContext();
+  const screenWidth = useContext(WidthContext);
 
   async function handleLogout() {
     const res = await logout();
@@ -30,15 +17,15 @@ export default function Host() {
     }
   }
   return (
-    <main className="host-main grow">
-      <section className="flex-spacebetween layout-margin">
-        <nav className="host-nav flex flex-wrap  gap-40">
+    <main className='host-main grow'>
+      <section className={`flex-spacebetween ${layoutPadding(screenWidth)}`}>
+        <nav className='host-nav flex flex-wrap  gap-40'>
           <NavLink
             className={({ isActive }) =>
               isActive ? "underline" : "nav_link no-decoration_link"
             }
             end
-            to=""
+            to=''
           >
             Dashboard
           </NavLink>
@@ -46,7 +33,7 @@ export default function Host() {
             className={({ isActive }) =>
               isActive ? "underline" : "nav_link no-decoration_link"
             }
-            to="income"
+            to='income'
           >
             Income
           </NavLink>
@@ -54,7 +41,7 @@ export default function Host() {
             className={({ isActive }) =>
               isActive ? "underline" : "nav_link no-decoration_link"
             }
-            to="vans"
+            to='vans'
           >
             Vans
           </NavLink>
@@ -62,12 +49,12 @@ export default function Host() {
             className={({ isActive }) =>
               isActive ? "underline" : "nav_link no-decoration_link"
             }
-            to="reviews"
+            to='reviews'
           >
             Reviews
           </NavLink>
         </nav>
-        <button className="logout hover scale" onClick={handleLogout}>
+        <button className='logout hover scale' onClick={handleLogout}>
           logout
         </button>
       </section>
