@@ -48,7 +48,7 @@ export default function Login({ setIsLoggedIn }) {
                 type="email"
                 name="email"
                 className="form-input display-block"
-                placeholder="Email"
+                placeholder="Email: mohemedryn@gmail.com"
                 value={formData.email}
               />
               <input
@@ -56,7 +56,7 @@ export default function Login({ setIsLoggedIn }) {
                 type="password"
                 name="password"
                 className="form-input display-block"
-                placeholder="Password"
+                placeholder="Password: rayane1234"
                 value={formData.password}
               />
             </div>

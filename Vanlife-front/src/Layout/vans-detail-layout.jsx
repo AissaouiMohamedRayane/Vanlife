@@ -140,6 +140,7 @@ export default function VanDetailLayout(props) {
     </nav>
   );
 
+
   return (
     <>
       <div
@@ -177,8 +178,8 @@ export default function VanDetailLayout(props) {
           } item-start gap-50`}
         >
           <img
-            src={`http://127.0.0.1:8000${van.image}`}
-            className={windowWidth < 990 ? "full-width" : ""}
+            src={van.image}
+            className={windowWidth < 990 ? "full-width" : "detail-img"}
             ref={imageRef}
             onLoad={image}
             alt='image'

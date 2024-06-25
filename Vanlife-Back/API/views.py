@@ -6,12 +6,15 @@ from json import loads
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import generics
-from rest_framework.permissions import IsAuthenticated
+from rest_framework import mixins
+from rest_framework import permissions, authentication
+from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,  logout
 
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
 def login_view(request):
     data = loads(request.body)
@@ -58,18 +61,15 @@ def get_user_info(request):
         item = serialized_user[info]
         return Response({'userImage' : item}, status = 200)
     else:
-        return Response({'error':'there is no field with these name'}, status = 404)        
+        return Response({'error':'there is no field with these name'}, status = 404)     
 
 
-class ListVans(generics.ListAPIView):
-    queryset = Van.objects.all()
-    serializer_class = VanSerializer
-list_vans_view = ListVans.as_view()
 
 
 class ListMyVans(LoginRequiredMixin, generics.ListAPIView):
     serializer_class = VanSerializer
-    permission_classes = [IsAuthenticated]
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
@@ -77,21 +77,45 @@ class ListMyVans(LoginRequiredMixin, generics.ListAPIView):
 
 list_my_vans_view = ListMyVans.as_view()
 
-# @login_required
-# @csrf_exempt
-@api_view(['POST'])
-def add_van (request):
-    try:    
-        data = loads(request.body)
-    except:
-        return Response({'hi':'Hi'}, status=400)
-    serializer = VanSerializer(data = data)
-    if serializer.is_valid(raise_exception=True):
-        try:
-            instance = serializer.save()
-        except IntegrityError as e:
-            return Response({'error' : f"{e}"})
-    return Response({'res' : 'van added succesfully'})
+
+class ListAddVan(
+    generics.ListCreateAPIView,
+    LoginRequiredMixin
+    ):
+    queryset = Van.objects.all()
+    serializer_class = VanSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+        
+    
+    def get_permissions(self):
+        if self.request.method == 'POST':
+            return [permissions.IsAuthenticated()]
+        return []
+    
+    def perform_create(self, serializer):
+        serializer.save(user = self.request.user)
+        
+list_add_van_view = ListAddVan.as_view()
+        
+# class TestMixin(
+#     mixins.ListModelMixin,
+#     mixins.CreateModelMixin,
+#     LoginRequiredMixin,
+#     generics.GenericAPIView):
+
+#     queryset = Van.objects.all()
+#     serializer_class = VanSerializer
+#     authentication_classes = [authentication.SessionAuthentication]
+    
+#     def get_permissions(self):
+#         if self.request.method == 'POST':
+#             return [permissions.IsAuthenticated()]
+#         return []
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+    
     
 @login_required
 # @csrf_exempt
@@ -129,6 +153,34 @@ def modify_van(request, van_id = None):
         return Response({'res' : 'van modified succesfully'}, status = 200)
     return Response({'error' : 'no van with this id'}, status = 404)
 
+class ModifyVan(LoginRequiredMixin, generics.UpdateAPIView):
+    serializer_class = VanSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'pk'
+    
+    def get_queryset(self):
+        return Van.objects.filter(pk = self.van_id)
+    
+    def perform_update(self, serializer):
+        serializer.save()
+modify_van_view = ModifyVan.as_view()
+
+
+class DeleteVan(LoginRequiredMixin, generics.DestroyAPIView):
+    serializer_class = VanSerializer
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+    lookup_field = 'pk'
+    
+    def get_queryset(self):
+        return Van.objects.filter(pk = self.van_id)
+    
+    def perform_destroy(self, instance):
+        return super().perform_destroy(instance)
+    
+delete_van_view =DeleteVan.as_view()
+
 @api_view(['GET'])
 def van_comments(request):
     van_id = request.GET.get('van_id')
@@ -146,7 +198,7 @@ def van_comments(request):
 @api_view(['GET'])
 def user_comments(request):
     comments = Comment.objects.filter(user = request.user)
-    if comments:    
+    if comments:
         serialized_comments = CommentSerializer(comments, many = True)
         return Response({"comments" : serialized_comments.data}, status = 200)
     return Response ({"no_comments" : "No comments"}, status=200)
