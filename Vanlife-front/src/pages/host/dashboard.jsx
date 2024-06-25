@@ -21,7 +21,7 @@ export default function Dashboard() {
           </p>
           <h6 className='dashboard-detail scale hover'>Details</h6>
         </div>
-        <h1 className='dashboard-welocome-number'>$2,260</h1>
+        <h1 className='dashboard-welocome-number'>$0</h1>
       </section>
       <section className={`dashboard-review ${layoutPadding(screenWidth)}`}>
         <div className='flex-spacebetween'>
@@ -30,7 +30,7 @@ export default function Dashboard() {
             <span className={`flex end`}>
               <img src={star} className='star' alt='star' />
               <h6 className='dashboard-review-h6 trn'>
-                <span className='weight-900 pd-l--5'>5.0</span>/5
+                <span className='weight-900 pd-l--5'>0</span>/5
               </h6>
             </span>
           </div>

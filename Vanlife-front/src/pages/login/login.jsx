@@ -26,9 +26,9 @@ export default function Login({ setIsLoggedIn }) {
     event.preventDefault();
     try {
       const res = await login(formData);
-      setIsLoggedIn(res);
       if (res) {
         Cookies.set("loggedInUser", formData.email, { expires: 7 });
+        setIsLoggedIn(res);
         setNavigate(true);
       }
     } catch (error) {
@@ -36,34 +36,34 @@ export default function Login({ setIsLoggedIn }) {
     }
   };
   return (
-    <main className="grow">
-      <figure className="flex-spacebetween layout-margin item-start mr-l-0">
-        <img src={vanImage} className="login-image" alt="image" />
-        <figcaption className="flex-column gap-50">
-          <h1 className="login-form-h1">Sign in to your account</h1>
-          <form className="flex-column" onSubmit={handleSubmit}>
+    <main className='grow'>
+      <figure className='flex-spacebetween layout-margin item-start mr-l-0'>
+        <img src={vanImage} className='login-image' alt='image' />
+        <figcaption className='flex-column gap-50'>
+          <h1 className='login-form-h1'>Sign in to your account</h1>
+          <form className='flex-column' onSubmit={handleSubmit}>
             <div>
               <input
                 onChange={handleChange}
-                type="email"
-                name="email"
-                className="form-input display-block"
-                placeholder="Email: mohemedryn@gmail.com"
+                type='email'
+                name='email'
+                className='form-input display-block'
+                placeholder='Email: mohemedryn@gmail.com'
                 value={formData.email}
               />
               <input
                 onChange={handleChange}
-                type="password"
-                name="password"
-                className="form-input display-block"
-                placeholder="Password: rayane1234"
+                type='password'
+                name='password'
+                className='form-input display-block'
+                placeholder='Password: rayane1234'
                 value={formData.password}
               />
             </div>
             <Button
-              text="Sign in"
-              background="orange-background"
-              color="white-color"
+              text='Sign in'
+              background='orange-background'
+              color='white-color'
             />
           </form>
         </figcaption>

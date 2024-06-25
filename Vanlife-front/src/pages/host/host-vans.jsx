@@ -43,7 +43,7 @@ export default function HostVans() {
       ) : err ? (
         <h1 className="layout-margin">{err.message}</h1>
       ) : (
-        mapedVans
+        mapedVans 
       )}
     </section>
   );

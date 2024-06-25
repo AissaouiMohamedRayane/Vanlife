@@ -11,6 +11,7 @@ import VanDetailLayout from "../Layout/vans-detail-layout.jsx";
 
 
 import Login from "../pages/login/login.jsx";
+import Register from "../pages/register/register.jsx";
 import AuthRequired from "../protectedRoutes/AuthRequired.jsx";
 
 import { protectedRoutes } from "./protectedRoutes.jsx";
@@ -18,6 +19,7 @@ export const layoutRoutes = (
   <>
     <Route index element={<App />} />
     <Route path="login" element={<Login />} />
+    <Route path="register" element={<Register />} />
     <Route path="about" element={<About />} />
     <Route
       path="vans"

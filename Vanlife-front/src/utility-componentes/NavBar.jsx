@@ -51,6 +51,16 @@ export default function Navbar(props) {
               : "gap-50"
           }`}
         >
+          {!isLoggedIn && (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? " underline nav_link" : "no-decoration_link nav_link"
+              }
+              to='register'
+            >
+              Register
+            </NavLink>
+          )}
           <NavLink
             className={({ isActive }) =>
               isActive ? " underline nav_link" : "no-decoration_link nav_link"

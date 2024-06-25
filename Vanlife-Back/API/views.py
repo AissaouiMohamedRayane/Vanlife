@@ -34,9 +34,9 @@ def logout_view(request):
     logout(request)
     return Response({"res" : True}, status = 200)
 
-# @csrf_exempt
+@csrf_exempt
 @api_view(['POST'])
-def register(request):
+def register_view(request):
     data = loads(request.body)
     email = data.get('email')
     user_name = data.get('username')
@@ -45,7 +45,7 @@ def register(request):
         user = NewUser.objects.create_user(email = email, user_name = user_name, password = password)
         user.save()
     except IntegrityError as e:
-        return Response({'error' : f"{e}"}, status = 400)
+        return Response({'error' : f"{e}asdasd"}, status = 400)
     login(request, user)
     return Response({'res' : 'registerd succesfully'}, status = 200)
 
