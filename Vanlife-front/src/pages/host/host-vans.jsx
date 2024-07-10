@@ -26,24 +26,29 @@ export default function HostVans() {
         key={van.id}
         to={`/host/vans/${van.id}`}
         state={hostVans}
-        className="no-decoration_link"
+        className='no-decoration_link'
       >
-        <VanListCard img={van.image} name={van.name} price={van.price} />
+        <VanListCard
+          id={van.id}
+          img={van.image}
+          name={van.name}
+          price={van.price}
+        />
       </Link>
     );
   });
   return (
-    <section className="layout-margin">
-      <div className="flex-spacebetween">
-        <h1 className="Your-listed-vans">Your listed vans</h1>
-        <h6 className="dashboard-detail">View All</h6>
+    <section className='layout-margin'>
+      <div className='flex-spacebetween'>
+        <h1 className='Your-listed-vans'>Your listed vans</h1>
+        <h6 className='dashboard-detail'>View All</h6>
       </div>
       {loading ? (
-        <h1 className="layout-margin">Loading...</h1>
+        <h1 className='layout-margin'>Loading...</h1>
       ) : err ? (
-        <h1 className="layout-margin">{err.message}</h1>
+        <h1 className='layout-margin'>{err.message}</h1>
       ) : (
-        mapedVans 
+        mapedVans
       )}
     </section>
   );

@@ -2,6 +2,7 @@ import { Route } from "react-router-dom";
 
 import VanDetail from "../utility-componentes/van-detail.jsx";
 import Host from "../protectedRoutes/host/host.jsx";
+import Edit from "../pages/edit/edit.jsx";
 
 import Dashboard from "../pages/host/dashboard.jsx";
 import Income from "../pages/host/income.jsx";
@@ -14,16 +15,17 @@ import Photos from "../pages/host/details/Photos.jsx";
 
 export const hostRoutes = (
   <>
-    <Route path="host" element={<Host />}>
+    <Route path='host' element={<Host />}>
       <Route index element={<Dashboard />} />
-      <Route path="income" element={<Income />} />
-      <Route path="vans" element={<HostVans />} />
-      <Route path="vans/:id" element={<VanDetailLayout host={true} />}>
+      <Route path='edit/:id' element={<Edit />} />
+      <Route path='income' element={<Income />} />
+      <Route path='vans' element={<HostVans />} />
+      <Route path='vans/:id' element={<VanDetailLayout host={true} />}>
         <Route index element={<VanDetail />} />
-        <Route path="pricing" element={<Pricing />} />
-        <Route path="photos" element={<Photos />} />
+        <Route path='pricing' element={<Pricing />} />
+        <Route path='photos' element={<Photos />} />
       </Route>
-      <Route path="reviews" element={<Reviews />} />
+      <Route path='reviews' element={<Reviews />} />
     </Route>
   </>
 );

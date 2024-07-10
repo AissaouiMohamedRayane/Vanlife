@@ -249,6 +249,10 @@ html {
   background-color: #FF8C38;
 }
 
+.red {
+  color: red;
+}
+
 .dark-orange-background {
   background-color: #E17654;
 }
@@ -770,26 +774,17 @@ body::-webkit-scrollbar {
   font-weight: 900;
 }
 
-.van-detail-descreption--XLL {
-  font-size: 2rem;
+.van-detail-descreption--laptop {
+  font-size: clamp(1.1rem, 2vw, 1.8rem);
   font-weight: 500;
-  line-height: 3rem;
+  line-height: 2.5rem;
+}
+.van-detail-descreption--phone {
+  font-size: clamp(1.1rem, 5vw, 1.8rem);
+  font-weight: 300;
+  line-height: 2rem;
 }
 
-.van-detail-descreption--XL {
-  font-size: 1.8rem;
-  font-weight: 500;
-}
-
-.van-detail-descreption--L {
-  font-size: 1.5rem;
-  font-weight: 200;
-}
-
-.van-detail-descreption--M {
-  font-size: 1.1rem;
-  font-weight: 200;
-}
 
 .dashboard-welcome {
   background-color: #FFEAD0;
@@ -886,4 +881,8 @@ body::-webkit-scrollbar {
   font-size: clamp(1.2rem, 6vw, 1.5rem);
   font-weight: 700;
   text-decoration: underline;
+}
+
+.register-form-element {
+  padding: 1rem 2rem 1rem .5rem;
 }

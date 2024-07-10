@@ -3,6 +3,7 @@ import { useState, useContext } from "react";
 import { LoginContext } from "../../Layout/layout";
 import { Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import Button from "../../utility-componentes/button";
 
 export default function Register() {
   const [formdata, setFormData] = useState({
@@ -11,6 +12,8 @@ export default function Register() {
     password: "",
     configPass: "",
   });
+
+  const [falsePass, setFalsePass] = useState(false);
 
   const [loggedIn, setLoggedIn] = useContext(LoginContext);
 
@@ -41,6 +44,7 @@ export default function Register() {
         console.error(error);
       }
     } else {
+      setFalsePass(true);
     }
   };
   if (loggedIn) {
@@ -49,8 +53,9 @@ export default function Register() {
 
   return (
     <main className='grow layout-margin'>
-      <form onSubmit={handleSubmit}>
+      <form className='flex-column gap-5' onSubmit={handleSubmit}>
         <input
+          className='register-form-element'
           type='text'
           name='username'
           value={formdata.username}
@@ -59,6 +64,7 @@ export default function Register() {
         />
 
         <input
+          className='register-form-element'
           type='email'
           name='email'
           value={formdata.email}
@@ -67,14 +73,16 @@ export default function Register() {
         />
 
         <input
+          className='register-form-element'
           type='password'
           name='password'
           value={formdata.password}
           onChange={handleChange}
           placeholder='password'
         />
-
+        {falsePass && <div className='red'>false</div>}
         <input
+          className='register-form-element'
           type='password'
           name='configPass'
           value={formdata.configPass}
@@ -83,7 +91,12 @@ export default function Register() {
         />
         <br />
         <br />
-        <button>Submit</button>
+        <Button
+          color='white-color'
+          background='orange-background'
+          text='Submit'
+          buttonClasses='mr-t-20 hover'
+        />
       </form>
     </main>
   );

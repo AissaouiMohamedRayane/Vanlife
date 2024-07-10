@@ -9,10 +9,10 @@ from rest_framework import generics
 from rest_framework import mixins
 from rest_framework import permissions, authentication
 from django.views.decorators.csrf import csrf_exempt
-from django.http import JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login,  logout
+
 
 @csrf_exempt
 @api_view(['POST'])
@@ -62,9 +62,12 @@ def get_user_info(request):
         return Response({'userImage' : item}, status = 200)
     else:
         return Response({'error':'there is no field with these name'}, status = 404)     
+    
+class detailVan(generics.RetrieveAPIView):
+    serializer_class =  VanSerializer
+    queryset = Van.objects.all()
 
-
-
+detail_van = detailVan.as_view()
 
 class ListMyVans(LoginRequiredMixin, generics.ListAPIView):
     serializer_class = VanSerializer
@@ -127,8 +130,7 @@ def delete_van (request, van_id = None):
         return Response({'res' : 'Deleted succesfully'}, status = 200)
     return Response({'error' : 'no Van with these id'}, status = 404)
 
-@login_required
-# @csrf_exempt
+@csrf_exempt
 @api_view(['PUT'])
 def modify_van(request, van_id = None):
     van = Van.objects.get(pk = van_id)
@@ -153,18 +155,21 @@ def modify_van(request, van_id = None):
         return Response({'res' : 'van modified succesfully'}, status = 200)
     return Response({'error' : 'no van with this id'}, status = 404)
 
-class ModifyVan(LoginRequiredMixin, generics.UpdateAPIView):
+class ModifyVanView(LoginRequiredMixin, generics.RetrieveUpdateAPIView):
     serializer_class = VanSerializer
     authentication_classes = [authentication.SessionAuthentication]
     permission_classes = [permissions.IsAuthenticated]
     lookup_field = 'pk'
     
     def get_queryset(self):
-        return Van.objects.filter(pk = self.van_id)
+        if self.request.user.is_authenticated:
+            return Van.objects.filter(user=self.request.user, pk=self.kwargs['pk'])
+        else:
+            return Van.objects.none()
     
     def perform_update(self, serializer):
         serializer.save()
-modify_van_view = ModifyVan.as_view()
+modify_van_view = ModifyVanView.as_view()
 
 
 class DeleteVan(LoginRequiredMixin, generics.DestroyAPIView):

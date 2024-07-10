@@ -73,7 +73,7 @@ class Van (models.Model):
     price = models.FloatField(_("van price"))
     image = models.ImageField(_("van image"), upload_to="images/", height_field=None, width_field=None, max_length=None, blank=True, default="images/van.png")
     type = models.CharField(_("van type"), max_length=20, choices=TYPE_CHOICES)
-    description = models.CharField(_("van description"), max_length=200, blank=True, default="vans description")
+    description = models.CharField(_("van description"), max_length=290, blank=True, default="vans description")
     date_added = models.DateField(default=timezone.now)
     @property
     def my_id(self):

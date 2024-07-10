@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 export default function VanListCard(props) {
   return (
     <main className="flex-spacebetween van-list-card scale-5 hover">
@@ -8,7 +9,7 @@ export default function VanListCard(props) {
           <h6 className="van-list-price">${props.price}/day</h6>
         </div>
       </div>
-      <h6 className="dashboard-detail">Edit</h6>
+      <NavLink className="dashboard-detail" to={`/host/edit/${props.id}`}>Edit</NavLink>
     </main>
   );
 }

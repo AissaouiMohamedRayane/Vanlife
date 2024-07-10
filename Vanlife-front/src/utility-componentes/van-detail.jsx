@@ -33,7 +33,7 @@ export default function VanDetail(props) {
 
   return (
     <>
-      <div className="flex-column gap-20">
+      <div className='flex-column gap-20'>
         <div
           className={`flex-spacebetween gap-30 ${
             windowWidth >= 870 ? "" : "flex-wrap"
@@ -42,7 +42,7 @@ export default function VanDetail(props) {
           <Button
             text={van.type}
             background={background}
-            color="white-color"
+            color='white-color'
             buttonClasses={`${
               windowWidth > 350
                 ? "van-detail-button"
@@ -76,21 +76,17 @@ export default function VanDetail(props) {
       </div>
       <p
         className={`${
-          windowWidth >= 1400
-            ? "van-detail-descreption--XLL"
-            : windowWidth >= 1290
-            ? "van-detail-descreption--XL"
-            : windowWidth >= 1110
-            ? "van-detail-descreption--L"
-            : "van-detail-descreption--M"
+          windowWidth > 987
+            ? "van-detail-descreption--laptop"
+            : "van-detail-descreption--phone"
         } grow`}
       >
         {van.description}
       </p>
       <Button
-        text="Rent this van"
-        color="white-color"
-        background="orange-background"
+        text='Rent this van'
+        color='white-color'
+        background='orange-background'
         buttonClasses={` ${
           windowWidth >= 1077 ? "" : "van-detail-button-font-size--XL "
         }`}
